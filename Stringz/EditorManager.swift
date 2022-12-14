@@ -32,7 +32,8 @@ class EditorManager: NSObject {
   init(delegate: EditorManagerDelegate) {
     self.delegate = delegate
 
-    self.sortDescriptors = [VSSortDescriptor(key: "key", ascending: true)]
+//    self.sortDescriptors = [VSSortDescriptor(key: "key", ascending: true)]
+      self.sortDescriptors = []
 
     self.searchQuery = ""
     self.searchType = UserDefaults.searchType
