@@ -9,9 +9,9 @@ import Foundation
 
 /// Represents the current status of the localizable
 enum LocalizableStatus: Int, CaseIterable {
-  case ready
-  case unloaded
-  case unlocalized
-  case loading
-  case saving
+    case ready
+    case unloaded
+    case unlocalized
+    case loading
+    case saving
 }

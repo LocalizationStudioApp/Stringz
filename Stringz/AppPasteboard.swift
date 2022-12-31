@@ -8,5 +8,5 @@
 import Cocoa
 
 extension NSPasteboard.PasteboardType {
-  static let localizableSection = Self("stringz.sidebar.localizableSection")
+    static let localizableSection = Self("stringz.sidebar.localizableSection")
 }

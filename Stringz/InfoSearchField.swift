@@ -8,39 +8,38 @@
 import Cocoa
 
 class InfoSearchField: NSSearchField {
-  private var labelResultCount: NSTextField!
+    private var labelResultCount: NSTextField!
 
-  var infoString: String? {
-    get { labelResultCount.stringValue }
-    set { labelResultCount.stringValue = newValue ?? ""}
-  }
-  var infoAttributedString: NSAttributedString? {
-    get { labelResultCount.attributedStringValue }
-    set { labelResultCount.attributedStringValue = newValue ?? NSAttributedString(string: "") }
-  }
+    var infoString: String? {
+        get { labelResultCount.stringValue }
+        set { labelResultCount.stringValue = newValue ?? "" }
+    }
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
+    var infoAttributedString: NSAttributedString? {
+        get { labelResultCount.attributedStringValue }
+        set { labelResultCount.attributedStringValue = newValue ?? NSAttributedString(string: "") }
+    }
 
-    labelResultCount = NSTextField(wrappingLabelWithString: "")
-    labelResultCount.translatesAutoresizingMaskIntoConstraints = false
-    labelResultCount.font = NSFont.systemFont(ofSize: 12)
-    labelResultCount.textColor = .secondaryLabelColor
-    self.addSubview(labelResultCount)
+    override func awakeFromNib() {
+        super.awakeFromNib()
 
-    labelResultCount.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-    labelResultCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
-  }
+        labelResultCount = NSTextField(wrappingLabelWithString: "")
+        labelResultCount.translatesAutoresizingMaskIntoConstraints = false
+        labelResultCount.font = NSFont.systemFont(ofSize: 12)
+        labelResultCount.textColor = .secondaryLabelColor
+        addSubview(labelResultCount)
 
-  override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-    return true
-  }
+        labelResultCount.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        labelResultCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+    }
+
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        return true
+    }
 }
 
 extension InfoSearchField: NSMenuItemValidation {
-  func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-    return true
-  }
-
-
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        return true
+    }
 }

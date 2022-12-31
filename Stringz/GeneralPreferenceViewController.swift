@@ -10,24 +10,24 @@ import Preferences
 import Sparkle
 
 final class GeneralPreferenceViewController: PreferenceViewController, PreferencePane {
-  let preferencePaneIdentifier = Preferences.PaneIdentifier.general
-  let preferencePaneTitle = "General"
-  let toolbarItemIcon = NSImage(named: "preferences.general")!
-  override var nibName: NSNib.Name? { "GeneralPreference" }
+    let preferencePaneIdentifier = Preferences.PaneIdentifier.general
+    let preferencePaneTitle = "General"
+    let toolbarItemIcon = NSImage(named: "preferences.general")!
+    override var nibName: NSNib.Name? { "GeneralPreference" }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
-  var appDelegate: AppDelegate {
-    NSApplication.shared.delegate as! AppDelegate
-  }
+    var appDelegate: AppDelegate {
+        NSApplication.shared.delegate as! AppDelegate
+    }
 
-  @IBAction func automaticallyCheckForUpdatesChanged(_ sender: NSButton) {
-    appDelegate.updaterController.updater.automaticallyChecksForUpdates = sender.state == .on
-  }
+    @IBAction func automaticallyCheckForUpdatesChanged(_ sender: NSButton) {
+        appDelegate.updaterController.updater.automaticallyChecksForUpdates = sender.state == .on
+    }
 
-  @IBAction func automaticallyDownloadUpdatesChanged(_ sender: NSButton) {
-    appDelegate.updaterController.updater.automaticallyDownloadsUpdates = sender.state == .on
-  }
+    @IBAction func automaticallyDownloadUpdatesChanged(_ sender: NSButton) {
+        appDelegate.updaterController.updater.automaticallyDownloadsUpdates = sender.state == .on
+    }
 }

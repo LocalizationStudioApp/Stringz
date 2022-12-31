@@ -11,14 +11,14 @@ import Foundation
 ///
 /// It's importent to determine the type of the localizable because fetching and saving strings is different for different localizable types.
 enum LocalizableType: Int, CaseIterable {
-  case strings
-  case storyboard
-  case xib
-  case config
+    case strings
+    case storyboard
+    case xib
+    case config
 }
 
 extension LocalizableType: Comparable {
-  static func < (lhs: LocalizableType, rhs: LocalizableType) -> Bool {
-    return lhs.rawValue < rhs.rawValue
-  }
+    static func < (lhs: LocalizableType, rhs: LocalizableType) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
 }

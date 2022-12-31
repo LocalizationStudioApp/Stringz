@@ -8,17 +8,18 @@
 import Foundation
 
 extension Notification.Name {
-  static let WatchFile = Self("stringz.notification.WatchFile")
-  static let UnwatchFile = Self("stringz.notification.UnwatchFile")
+    static let WatchFile = Self("stringz.notification.WatchFile")
+    static let UnwatchFile = Self("stringz.notification.UnwatchFile")
 
-  static func saveFile(uuid: String) -> Notification.Name {
-    return Self("stringz.notification.SaveFile.\(uuid)")
-  }
-  static func reloadFile(uuid: String) -> Notification.Name {
-    return Self("stringz.notification.ReloadFile.\(uuid)")
-  }
+    static func saveFile(uuid: String) -> Notification.Name {
+        return Self("stringz.notification.SaveFile.\(uuid)")
+    }
 
-  static let OpenProjectCount = Self("stringz.notification.OpenProjectCount")
+    static func reloadFile(uuid: String) -> Notification.Name {
+        return Self("stringz.notification.ReloadFile.\(uuid)")
+    }
 
-  static let SearchQuery = Self("stringz.notification.SearchQuery")
+    static let OpenProjectCount = Self("stringz.notification.OpenProjectCount")
+
+    static let SearchQuery = Self("stringz.notification.SearchQuery")
 }

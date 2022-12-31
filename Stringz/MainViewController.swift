@@ -9,10 +9,11 @@
 import Cocoa
 
 class MainViewController: NSSplitViewController {
-  var sidebarViewController: SidebarViewController {
-    splitViewItems[0].viewController as! SidebarViewController
-  }
-  var editorViewController: EditorViewController {
-    splitViewItems[1].viewController as! EditorViewController
-  }
+    var sidebarViewController: SidebarViewController {
+        splitViewItems[0].viewController as! SidebarViewController
+    }
+
+    var editorViewController: EditorViewController {
+        splitViewItems[1].viewController as! EditorViewController
+    }
 }

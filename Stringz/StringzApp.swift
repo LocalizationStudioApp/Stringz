@@ -7,6 +7,4 @@
 
 import Cocoa
 
-class StringzApp: NSApplication {
-}
-
+class StringzApp: NSApplication {}

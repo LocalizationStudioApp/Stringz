@@ -9,6 +9,6 @@
 import Foundation
 
 enum StringzError: Error {
-  case notFoundError
-  case importerError(_ domain: String, message: String? = nil)
+    case notFoundError
+    case importerError(_ domain: String, message: String? = nil)
 }

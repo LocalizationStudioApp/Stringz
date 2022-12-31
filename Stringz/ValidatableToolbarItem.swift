@@ -8,57 +8,56 @@
 import Cocoa
 
 class ValidatableToolbarItem: NSToolbarItem {
-  override func validate() {
-    if let control = self.view as? NSControl {
-      let target: AnyObject
-      if let action = self.action,
-         let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject? {
-        target = validator
-      } else if let validator = control.target {
-        target = validator
-      } else {
+    override func validate() {
+        if let control = view as? NSControl {
+            let target: AnyObject
+            if let action = action,
+               let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject? {
+                target = validator
+            } else if let validator = control.target {
+                target = validator
+            } else {
+                super.validate()
+                return
+            }
+
+            let result: Bool
+            if let target = target as? NSUserInterfaceValidations {
+                result = target.validateUserInterfaceItem(self)
+            } else {
+                result = target.validateToolbarItem(self)
+            }
+
+            isEnabled = result
+            control.isEnabled = result
+        }
+
         super.validate()
-        return
-      }
-
-      let result: Bool
-      if let target = target as? NSUserInterfaceValidations {
-        result = target.validateUserInterfaceItem(self)
-      } else {
-        result = target.validateToolbarItem(self)
-      }
-
-      self.isEnabled = result
-      control.isEnabled = result
     }
-    
-    super.validate()
-    return
-  }
 }
 
 @available(OSX 11.0, *)
 class ValidatableSearchToolbarItem: NSSearchToolbarItem {
-  override func validate() {
-    let target: AnyObject
-    if let action = self.action,
-       let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject? {
-      target = validator
-    } else if let validator = searchField.target {
-      target = validator
-    } else {
-      super.validate()
-      return
-    }
+    override func validate() {
+        let target: AnyObject
+        if let action = action,
+           let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject? {
+            target = validator
+        } else if let validator = searchField.target {
+            target = validator
+        } else {
+            super.validate()
+            return
+        }
 
-    let result: Bool
-    if let target = target as? NSUserInterfaceValidations {
-      result = target.validateUserInterfaceItem(self)
-    } else {
-      result = target.validateToolbarItem(self)
-    }
+        let result: Bool
+        if let target = target as? NSUserInterfaceValidations {
+            result = target.validateUserInterfaceItem(self)
+        } else {
+            result = target.validateToolbarItem(self)
+        }
 
-    self.isEnabled = result
-    searchField.isEnabled = result
-  }
+        isEnabled = result
+        searchField.isEnabled = result
+    }
 }

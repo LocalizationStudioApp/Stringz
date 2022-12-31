@@ -9,27 +9,27 @@
 import Foundation
 
 class RegEx {
-  class func matches(for regex: String, in text: String) -> [String] {
-    do {
-      let regex = try NSRegularExpression(pattern: regex)
-      let nsString = text as NSString
-      let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
-      return results.map { nsString.substring(with: $0.range) }
-    } catch let error {
-      print("invalid regex: \(error.localizedDescription)")
-      return []
+    class func matches(for regex: String, in text: String) -> [String] {
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let nsString = text as NSString
+            let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
+            return results.map { nsString.substring(with: $0.range) }
+        } catch {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
     }
-  }
 
-  class func replace(_ source: String, with text: String, using regex: String) -> String {
-    do {
-      let regex = try NSRegularExpression(pattern: regex)
-      let nsString = source as NSString
-      let results = regex.stringByReplacingMatches(in: source, range: NSRange(location: 0, length: nsString.length), withTemplate: text)
-      return results
-    } catch let error {
-      print("invalid regex: \(error.localizedDescription)")
-      return ""
+    class func replace(_ source: String, with text: String, using regex: String) -> String {
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let nsString = source as NSString
+            let results = regex.stringByReplacingMatches(in: source, range: NSRange(location: 0, length: nsString.length), withTemplate: text)
+            return results
+        } catch {
+            print("invalid regex: \(error.localizedDescription)")
+            return ""
+        }
     }
-  }
 }

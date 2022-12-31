@@ -9,12 +9,12 @@ import Cocoa
 import Preferences
 
 final class ExportingPreferenceViewController: PreferenceViewController, PreferencePane {
-  let preferencePaneIdentifier = Preferences.PaneIdentifier.exporting
-  let preferencePaneTitle = "Exporting"
-  let toolbarItemIcon = NSImage(named: "preferences.exporting")!
-  override var nibName: NSNib.Name? { "ExportingPreference" }
+    let preferencePaneIdentifier = Preferences.PaneIdentifier.exporting
+    let preferencePaneTitle = "Exporting"
+    let toolbarItemIcon = NSImage(named: "preferences.exporting")!
+    override var nibName: NSNib.Name? { "ExportingPreference" }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

@@ -8,9 +8,9 @@
 import Cocoa
 
 extension NSToolbarItem.Identifier {
-  static let addLanguage = Self(rawValue: "stringz.addLanguage")
-  static let addString = Self(rawValue: "stringz.addString")
-  static let removeString = Self(rawValue: "stringz.removeString")
-  static let filter = Self(rawValue: "stringz.filter")
-  static let find = Self(rawValue: "stringz.find")
+    static let addLanguage = Self(rawValue: "stringz.addLanguage")
+    static let addString = Self(rawValue: "stringz.addString")
+    static let removeString = Self(rawValue: "stringz.removeString")
+    static let filter = Self(rawValue: "stringz.filter")
+    static let find = Self(rawValue: "stringz.find")
 }
