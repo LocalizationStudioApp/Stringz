@@ -59,6 +59,12 @@
 		71FB6F9B258D0A3E00800E63 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB6F9A258D0A3E00800E63 /* AppCenterCrashes */; };
 		71FB6F9D258D0A3E00800E63 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB6F9C258D0A3E00800E63 /* AppCenterAnalytics */; };
 		71FFCF5D2613AB8500D7414D /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 71FFCF5C2613AB8500D7414D /* Sparkle */; };
+		E92C32FA29609F9B00C76172 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C32F829609F9B00C76172 /* WelcomeWindowController.swift */; };
+		E951C7252961B11500EC51AC /* WelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E951C7242961B11500EC51AC /* WelcomeWindowController.xib */; };
+		E951C7272961B92400EC51AC /* WelcomeWindowController+Backup.xib in Resources */ = {isa = PBXBuildFile; fileRef = E951C7262961B92400EC51AC /* WelcomeWindowController+Backup.xib */; };
+		E951C72A2961BC6800EC51AC /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = E951C7292961BC6800EC51AC /* Collections */; };
+		E951C72C2961BC6800EC51AC /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = E951C72B2961BC6800EC51AC /* OrderedCollections */; };
+		E951C72E2961E12D00EC51AC /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = E951C72D2961E12D00EC51AC /* Then.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +116,10 @@
 		71E2EB13252CB1E400A9C9AC /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		71F28746258FAEF500F1A795 /* AppPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPasteboard.swift; sourceTree = "<group>"; };
 		71F4F92925963D0D00743CB7 /* AppToolbarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppToolbarItems.swift; sourceTree = "<group>"; };
+		E92C32F829609F9B00C76172 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWindowController.swift; sourceTree = "<group>"; };
+		E951C7242961B11500EC51AC /* WelcomeWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeWindowController.xib; sourceTree = "<group>"; };
+		E951C7262961B92400EC51AC /* WelcomeWindowController+Backup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WelcomeWindowController+Backup.xib"; sourceTree = "<group>"; };
+		E951C72D2961E12D00EC51AC /* Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +129,10 @@
 			files = (
 				71FFCF5D2613AB8500D7414D /* Sparkle in Frameworks */,
 				71EBAB772584E06700900A73 /* FileWatcher in Frameworks */,
+				E951C72A2961BC6800EC51AC /* Collections in Frameworks */,
 				71B65F91258FE5B300B2A6D2 /* Preferences in Frameworks */,
 				71E0DB4C25A1018B0097F5B5 /* ValueTransformerKit in Frameworks */,
+				E951C72C2961BC6800EC51AC /* OrderedCollections in Frameworks */,
 				71AD88432510FE150056A8C2 /* XcodeProj in Frameworks */,
 				71FB6F9D258D0A3E00800E63 /* AppCenterAnalytics in Frameworks */,
 				71FB6F9B258D0A3E00800E63 /* AppCenterCrashes in Frameworks */,
@@ -182,6 +194,7 @@
 				7183A5511EE81960007E88FF /* AppDelegate.swift */,
 				7183A5771EE81AFD007E88FF /* MainWindowController.swift */,
 				7183A5781EE81AFD007E88FF /* MainViewController.swift */,
+				E92C32F829609F9B00C76172 /* WelcomeWindowController.swift */,
 				7183A5791EE81AFD007E88FF /* SidebarViewController.swift */,
 				7183A57A1EE81AFD007E88FF /* EditorViewController.swift */,
 				71E0DB3E25A0E2D00097F5B5 /* AddStringViewController.swift */,
@@ -213,6 +226,7 @@
 				7183A5861EE81B19007E88FF /* Common.swift */,
 				7180D12D1F309D9800431BCB /* Errors.swift */,
 				718DE2D625A7944600AD02D1 /* Debouncer.swift */,
+				E951C72D2961E12D00EC51AC /* Then.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -221,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				71AFEA9D25893BF70054E5F2 /* Main.storyboard */,
+				E951C7242961B11500EC51AC /* WelcomeWindowController.xib */,
+				E951C7262961B92400EC51AC /* WelcomeWindowController+Backup.xib */,
 				7183A5551EE81960007E88FF /* Assets.xcassets */,
 				7183A55A1EE81960007E88FF /* Info.plist */,
 				71B371F6259F5C8F003DB79E /* GeneralPreference.xib */,
@@ -280,6 +296,8 @@
 				71B65F90258FE5B300B2A6D2 /* Preferences */,
 				71E0DB4B25A1018B0097F5B5 /* ValueTransformerKit */,
 				71FFCF5C2613AB8500D7414D /* Sparkle */,
+				E951C7292961BC6800EC51AC /* Collections */,
+				E951C72B2961BC6800EC51AC /* OrderedCollections */,
 			);
 			productName = Stringz;
 			productReference = 7183A54E1EE81960007E88FF /* Stringz.app */;
@@ -317,6 +335,7 @@
 				71B65F8F258FE5B300B2A6D2 /* XCRemoteSwiftPackageReference "Preferences" */,
 				71E0DB4A25A1018B0097F5B5 /* XCRemoteSwiftPackageReference "ValueTransformerKit" */,
 				71FFCF5B2613AB8500D7414D /* XCRemoteSwiftPackageReference "Sparkle" */,
+				E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 7183A54F1EE81960007E88FF /* Products */;
 			projectDirPath = "";
@@ -334,8 +353,10 @@
 			files = (
 				71B371FC259F6CB9003DB79E /* ImportingPreference.xib in Resources */,
 				71B3720C259F7B80003DB79E /* StoryboardPreference.xib in Resources */,
+				E951C7272961B92400EC51AC /* WelcomeWindowController+Backup.xib in Resources */,
 				71B371F7259F5C8F003DB79E /* GeneralPreference.xib in Resources */,
 				7183A5561EE81960007E88FF /* Assets.xcassets in Resources */,
+				E951C7252961B11500EC51AC /* WelcomeWindowController.xib in Resources */,
 				71B37207259F7985003DB79E /* ExportingPreference.xib in Resources */,
 				71B3720F259F7C8D003DB79E /* PlistPreference.xib in Resources */,
 				71AFEA9E25893BF70054E5F2 /* Main.storyboard in Resources */,
@@ -377,6 +398,7 @@
 				71F28747258FAEF500F1A795 /* AppPasteboard.swift in Sources */,
 				7183A5801EE81AFD007E88FF /* EditorViewController.swift in Sources */,
 				7183A56C1EE81AA1007E88FF /* Localizable.swift in Sources */,
+				E951C72E2961E12D00EC51AC /* Then.swift in Sources */,
 				71B37203259F756A003DB79E /* PreferenceViewController.swift in Sources */,
 				7183A5881EE81B19007E88FF /* RegEx.swift in Sources */,
 				71B37216259FA839003DB79E /* AppMenuItems.swift in Sources */,
@@ -386,6 +408,7 @@
 				71E0DB4725A0FC810097F5B5 /* AppScenes.swift in Sources */,
 				71E2EB14252CB1E400A9C9AC /* File.swift in Sources */,
 				7183A57D1EE81AFD007E88FF /* MainWindowController.swift in Sources */,
+				E92C32FA29609F9B00C76172 /* WelcomeWindowController.swift in Sources */,
 				7180D12E1F309D9800431BCB /* Errors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,7 +466,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -496,7 +519,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -521,6 +544,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.7.5;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.stringz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -546,6 +570,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.7.5;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.stringz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -626,6 +651,14 @@
 				minimumVersion = 2.3.0;
 			};
 		};
+		E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -663,6 +696,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 71FFCF5B2613AB8500D7414D /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		E951C7292961BC6800EC51AC /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		E951C72B2961BC6800EC51AC /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -40,6 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         hidesToolbarForSingleItem: true
     )
 
+    private var welcomeWindowController: WelcomeWindowController?
+    
     override init() {
         super.init()
         StringTransformers.register()
@@ -66,7 +68,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 NSApplication.shared.windows.first(where: { $0.self.className.contains("Preferences") })?.setContentSize(NSSize.zero)
             }
 
-        performOpen(self)
+//        performOpen(self)
+        welcomeWindowController = WelcomeWindowController.createWelcomeWindow { openProjectPath in
+            if let openProjectPath = openProjectPath {
+                _ = self.openProject(URL(fileURLWithPath: openProjectPath))
+            } else {
+                self.performOpen(self)
+            }
+        }
         windowCountDidChange()
 
         if Crashes.hasCrashedInLastSession {
@@ -88,7 +97,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if !flag {
-            performOpen(self)
+//            performOpen(self)
+            welcomeWindowController?.showWindow(self)
             return true
         } else {
             return false
@@ -126,9 +136,12 @@ extension AppDelegate {
         dialog.begin { result in
             if result == NSApplication.ModalResponse.OK {
                 if let url = dialog.url, self.openProject(url) {
+                    UserDefaults.recentProjectPaths.append(url.path)
                 } else {
                     let _ = Common.alert(message: "Unable to load your project", informative: "Stringz currently only supports Xcode projects (no support for workspaces), Please select a valid (.xcodeproj) file")
                 }
+            } else if result == .cancel {
+                self.welcomeWindowController?.showWindow(self)
             }
 
             self.isOpenPanelRunning = false

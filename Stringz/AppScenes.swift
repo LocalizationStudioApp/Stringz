@@ -19,3 +19,11 @@ extension NSStoryboard.SceneIdentifier {
     static let addStringViewController = Self("stringz.addStringViewController")
     static let wizardViewController = Self("stringz.wizardViewController")
 }
+
+extension NSNib {
+    static let welcomeWindowController = NSNib(nibNamed: "WelcomeWindowController", bundle: .main)
+}
+
+extension NSUserInterfaceItemIdentifier {
+    static let recentProjectTableViewCell = Self("stringz.recentProjectTableViewCell")
+}

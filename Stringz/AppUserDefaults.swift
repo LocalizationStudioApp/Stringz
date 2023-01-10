@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 import PathKit
+import OrderedCollections
 
 enum SearchType: Int {
     case all
@@ -69,6 +70,8 @@ extension UserDefaults {
     static let KeyPlistImportAll = "stringz.plist.importAll"
     static let KeyPlistKeys = "stringz.plist.keys"
 
+    static let KeyRecentProjectPaths = "stringz.recentProjectPaths"
+
     static func clearAll() {
         let domain = Bundle.main.bundleIdentifier!
         standard.removePersistentDomain(forName: domain)
@@ -110,10 +113,12 @@ extension UserDefaults {
             KeyExportingEmptyLines: 2,
 
             KeyPlistImportAll: false,
+
+            KeyRecentProjectPaths: [],
         ])
 
         if storyboardXcodePath == nil {
-            let xcodePath = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: "com.apple.dt.Xcode") ?? "/Applications/Xcode.app"
+            let xcodePath = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.dt.Xcode")?.path ?? "/Applications/Xcode.app"
 
             let ibtoolPath = Path("\(xcodePath)/Contents/Developer/usr/bin/ibtool")
             if ibtoolPath.exists {
@@ -309,6 +314,19 @@ extension UserDefaults {
         set {
             let data = try? NSKeyedArchiver.archivedData(withRootObject: newValue, requiringSecureCoding: false)
             standard.set(data, forKey: KeyPlistKeys)
+        }
+    }
+
+    static var recentProjectPaths: OrderedSet<String> {
+        get {
+            guard let data = standard.data(forKey: KeyRecentProjectPaths),
+                  let decode = try? JSONDecoder().decode(OrderedSet<String>.self, from: data)
+            else { return [] }
+            return decode
+        }
+        set {
+            let encode = try? JSONEncoder().encode(newValue)
+            standard.set(encode, forKey: KeyRecentProjectPaths)
         }
     }
 }

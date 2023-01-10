@@ -201,6 +201,10 @@ class MainWindowController: NSWindowController, NSWindowDelegate, EditorManagerD
         }
     }
 
+    @objc func performReloadData(_ sender: Any) {
+        
+    }
+    
     @objc func performLocalize(_ sender: Any) {
         localizeFile(selectedLocalizableIndex)
     }
@@ -808,14 +812,14 @@ extension MainWindowController: NSSearchFieldDelegate {
 
 extension MainWindowController: NSToolbarDelegate {
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return [.toggleSidebar, .addLanguage, .addString, .removeString, .filter, .find, .space, .flexibleSpace]
+        return [.toggleSidebar, .addLanguage, .addString, .removeString, .reloadData, .filter, .find, .space, .flexibleSpace]
     }
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         if #available(macOS 11, *) {
-            return [.toggleSidebar, .flexibleSpace, .addLanguage, .space, .addString, .removeString, .space, .filter, .space, .find]
+            return [.toggleSidebar, .flexibleSpace, .addLanguage, .space, .addString, .removeString, .reloadData, .space, .filter, .space, .find]
         } else {
-            return [.addLanguage, .space, .addString, .removeString, .flexibleSpace, .filter, .flexibleSpace, .find]
+            return [.addLanguage, .space, .addString, .removeString, .reloadData, .flexibleSpace, .filter, .flexibleSpace, .find]
         }
     }
 }
@@ -922,7 +926,8 @@ extension MainWindowController: NSMenuItemValidation, NSToolbarItemValidation {
             return ready && strings
         case .removeString:
             return ready && strings && tableView?.selectedRow != -1
-
+        case .reloadData:
+            return ready && strings
         case .filter:
             (item.view as! NSSegmentedControl).selectedSegment = editorManager.searchType.rawValue
             return ready

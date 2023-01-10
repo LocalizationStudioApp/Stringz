@@ -379,7 +379,7 @@ CA
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="52DD2371-32FA-4726-8202-813BEF1187C9" explicitItemIdentifier="stringz.addLanguage" label="Add Language" paletteLabel="Add Language" toolTip="Add Language" image="action.addLanguage" sizingBehavior="auto" id="w7H-dZ-8Jm" customClass="ValidatableToolbarItem" customModule="Stringz" customModuleProvider="target">
                                     <popUpButton key="view" verticalHuggingPriority="750" id="h6b-QN-1rB">
-                                        <rect key="frame" x="11" y="14" width="61" height="25"/>
+                                        <rect key="frame" x="15" y="14" width="53" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="action.addLanguage" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="4cz-Zu-d0M">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -454,6 +454,20 @@ CA
                                             <outlet property="searchMenuTemplate" destination="u6j-6c-y65" id="pqX-me-vIl"/>
                                         </connections>
                                     </searchField>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="1CCF5C57-BA2D-4BF0-9097-F615391AE62C" explicitItemIdentifier="stringz.reloadData" label="Reload Data" paletteLabel="Reload Data" image="NSRefreshTemplate" sizingBehavior="auto" id="Ihb-Un-3oy" customClass="ValidatableToolbarItem" customModule="Stringz" customModuleProvider="target">
+                                    <nil key="toolTip"/>
+                                    <button key="view" verticalHuggingPriority="750" id="zCK-Od-2O9">
+                                        <rect key="frame" x="23" y="14" width="26" height="23"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KOM-hP-1kC">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="performReloadData:" target="D0h-Bk-3Fu" id="BVz-dQ-J5M"/>
+                                        </connections>
+                                    </button>
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems/>
@@ -1121,7 +1135,7 @@ DQ
                                 <rect key="frame" x="18" y="20" width="414" height="448"/>
                                 <textFieldCell key="cell" selectable="YES" id="iuJ-qS-3Gb">
                                     <font key="font" metaFont="system"/>
-                                    <mutableString key="title">I highly advise naming your strings uniquely and consistently across the project.
+                                    <string key="title">I highly advise naming your strings uniquely and consistently across the project.
 
 For example, For a button you could name the string "action_cancel", The first part (action) means that the string is going to be used to trigger an action, and the second part (cancel) represents the name.
 
@@ -1131,7 +1145,7 @@ Along with "action (for buttons and actions)" I use "title (for screen or alert 
 
     • It gives context for your translator regarding where a string is being used. For example, In English the word "Profile" could be used to refer to "Account Details" but also it could mean "to analyze or to describe someone" but in Spanish, those are two separate words. So naming the keys as "title_profile" or "action_profile" helps your translator to understand the context better.
 
-    • It makes your strings more reusable. For example, In any project, you're most likely going to need the words "OK", "Cancel", "Done", "Delete", or "Refresh"... in many places, So using the method I described above will help you reuse those words instead of defining duplicates in your codebase.</mutableString>
+    • It makes your strings more reusable. For example, In any project, you're most likely going to need the words "OK", "Cancel", "Done", "Delete", or "Refresh"... in many places, So using the method I described above will help you reuse those words instead of defining duplicates in your codebase.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1153,6 +1167,7 @@ Along with "action (for buttons and actions)" I use "title (for screen or alert 
         </scene>
     </scenes>
     <resources>
+        <image name="NSRefreshTemplate" width="18" height="21"/>
         <image name="action.add" width="22" height="22"/>
         <image name="action.addLanguage" width="22" height="22"/>
         <image name="action.delete" width="22" height="22"/>

@@ -13,4 +13,5 @@ extension NSToolbarItem.Identifier {
     static let removeString = Self(rawValue: "stringz.removeString")
     static let filter = Self(rawValue: "stringz.filter")
     static let find = Self(rawValue: "stringz.find")
+    static let reloadData = Self(rawValue: "stringz.reloadData")
 }
