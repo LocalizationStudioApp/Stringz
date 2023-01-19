@@ -6,6 +6,14 @@
 //
 
 import Cocoa
+import DSFAppKitBuilder
+import SwiftUI
+import CocoaPreviews
+import Defaults
+import Combine
+import SnapKit
+import Collections
+import MenuBuilder
 
 class RecentProjectTableViewCell: NSTableCellView {
     @IBOutlet var iconImageView: NSImageView!
@@ -33,17 +41,34 @@ class WelcomeWindowController: NSWindowController {
         return welcomeWindowController
     }
 
-    @IBOutlet var welcomeView: WelcomeView!
+    @IBOutlet private var welcomeView: WelcomeView!
 
-    @IBOutlet var closeWindowButton: NSButton!
+    @IBOutlet private var closeWindowButton: NSButton!
 
-    @IBOutlet var showWindowButton: NSButton!
+    @IBOutlet private var showWindowButton: NSButton!
 
-    @IBOutlet var versionField: NSTextField!
+    @IBOutlet private var versionField: NSTextField!
 
-    @IBOutlet var openProjectActionView: NSView!
+    @IBOutlet private var openProjectActionView: NSView!
 
-    @IBOutlet var recentProjectTableView: NSTableView!
+    @IBOutlet private var recentProjectTableView: NSTableView!
+
+    @IBOutlet private var recentProjectView: NSView!
+
+    private let recentProjectEmptyView = DSFAppKitBuilderView {
+        ZStack {
+            ZLayer(layoutType: .center) {
+                Label("No Recent Projects")
+                    .font(.systemFont(ofSize: 20))
+                    .alignment(.center)
+            }
+        }
+        .width(300)
+    }
+
+    @Default(.recentProjectPaths) var recentProjectPaths
+
+    var cancellable: Set<AnyCancellable> = []
 
     var openProjectHandler: Handler?
 
@@ -54,7 +79,7 @@ class WelcomeWindowController: NSWindowController {
     private var appBuild: String {
         Bundle.buildString ?? ""
     }
-    
+
     override func windowDidLoad() {
         super.windowDidLoad()
         showWindowButton.alphaValue = 0
@@ -84,7 +109,36 @@ class WelcomeWindowController: NSWindowController {
         openProjectActionView.do {
             $0.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(openNewProject(_:))))
         }
+
+        _recentProjectPaths.publisher
+            .sink { [weak self] paths in
+                self?.recentProjectTableView.isHidden = paths.newValue.isEmpty
+                self?.recentProjectEmptyView.isHidden = !paths.newValue.isEmpty
+                self?.recentProjectTableView.reloadData()
+            }
+            .store(in: &cancellable)
+
+        recentProjectView.do {
+            $0.addSubview(recentProjectEmptyView)
+        }
+
+        recentProjectEmptyView.do {
+            $0.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
+
+        recentProjectTableView.do {
+            $0.menu = NSMenu {
+                MenuItem("Show in Finder")
+                    .onSelect { [weak self] in
+                        guard let self = self, self.recentProjectTableView.clickedRow >= 0 else { return }
+                        NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: self.recentProjectPaths[self.recentProjectTableView.clickedRow])])
+                    }
+            }
+        }
     }
+    
 
     @objc func openNewProject(_ sender: NSClickGestureRecognizer) {
         openProjectHandler?(nil)
@@ -92,7 +146,7 @@ class WelcomeWindowController: NSWindowController {
     }
 
     @IBAction func openRecentProject(_ sender: NSTableView) {
-        openProjectHandler?(UserDefaults.recentProjectPaths[sender.clickedRow])
+        openProjectHandler?(recentProjectPaths[sender.clickedRow])
         close()
     }
 
@@ -108,20 +162,21 @@ extension WelcomeWindowController: NSWindowDelegate {
         showWindowButton.alphaValue = 0
         closeWindowButton.alphaValue = 0
     }
+
     func windowDidBecomeKey(_ notification: Notification) {
         recentProjectTableView.reloadData()
-        print(UserDefaults.recentProjectPaths)
+        print(recentProjectPaths)
     }
 }
 
 extension WelcomeWindowController: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        UserDefaults.recentProjectPaths.count
+        recentProjectPaths.count
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: .recentProjectTableViewCell, owner: self) as? RecentProjectTableViewCell else { return nil }
-        let projectPath = UserDefaults.recentProjectPaths[row]
+        let projectPath = recentProjectPaths[row]
         let properties = try? URL(fileURLWithPath: projectPath).resourceValues(forKeys: [.localizedNameKey, .effectiveIconKey])
         cell.iconImageView.image = properties?.effectiveIcon as? NSImage
         cell.nameField.stringValue = properties?.localizedName ?? ""

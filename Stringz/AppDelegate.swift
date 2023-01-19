@@ -15,6 +15,7 @@ import Sparkle
 import Preferences
 import Combine
 import ValueTransformerKit
+import Defaults
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -131,12 +132,11 @@ extension AppDelegate {
         dialog.showsResizeIndicator = true
         dialog.title = "Select (xcodeproj) file"
         dialog.allowedFileTypes = ["xcodeproj"]
-
         isOpenPanelRunning = true
         dialog.begin { result in
             if result == NSApplication.ModalResponse.OK {
                 if let url = dialog.url, self.openProject(url) {
-                    UserDefaults.recentProjectPaths.append(url.path)
+                    Defaults[.recentProjectPaths].append(url.path)
                 } else {
                     let _ = Common.alert(message: "Unable to load your project", informative: "Stringz currently only supports Xcode projects (no support for workspaces), Please select a valid (.xcodeproj) file")
                 }

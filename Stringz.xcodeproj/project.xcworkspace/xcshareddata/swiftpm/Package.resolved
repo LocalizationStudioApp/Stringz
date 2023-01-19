@@ -14,8 +14,89 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/microsoft/appcenter-sdk-apple.git",
       "state" : {
-        "revision" : "88e65475ffd3a7cf2bbde07df9e62159a1fd60a8",
-        "version" : "5.0.0"
+        "revision" : "0c38cfb756f86673991d51f273b7bbcbaa28f94d",
+        "version" : "5.0.1"
+      }
+    },
+    {
+      "identity" : "cocoapreviews",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Mx-Iris/CocoaPreviews",
+      "state" : {
+        "branch" : "main",
+        "revision" : "2f25f09314c905f09ea2893696914e218c553cae"
+      }
+    },
+    {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults",
+      "state" : {
+        "revision" : "d71bfd8ffbf944ef08eacbca5fb96d6f69bf7696",
+        "version" : "7.1.0"
+      }
+    },
+    {
+      "identity" : "dsfappearancemanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/DSFAppearanceManager",
+      "state" : {
+        "revision" : "676cfd4e6aaa3cf6422990734c22544373db5c1a",
+        "version" : "3.3.0"
+      }
+    },
+    {
+      "identity" : "dsfappkitbuilder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/DSFAppKitBuilder",
+      "state" : {
+        "revision" : "15ee94f5436ef7a160bc9afd599b0de8a486fbf0",
+        "version" : "9.4.1"
+      }
+    },
+    {
+      "identity" : "dsfcombobutton",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/DSFComboButton",
+      "state" : {
+        "revision" : "675b8c13e0db5a759a6b757b09f7e18768830f29",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "dsfmenubuilder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/DSFMenuBuilder",
+      "state" : {
+        "revision" : "7f8f8ee0c5fb7ee6c06d057cd5ada0f99e3d3190",
+        "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "dsfpagercontrol",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/DSFPagerControl",
+      "state" : {
+        "revision" : "9fce788ab0d05d51999f39a03121f759a025c7f0",
+        "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "dsftogglebutton",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/DSFToggleButton",
+      "state" : {
+        "revision" : "17e140dc686e3622bba7a8b6a68495338c293b59",
+        "version" : "7.0.0"
+      }
+    },
+    {
+      "identity" : "dsfvaluebinders",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/DSFValueBinders",
+      "state" : {
+        "revision" : "1cedd5760b0c2c3abff94e65c7af938206d9cdb8",
+        "version" : "0.9.1"
       }
     },
     {
@@ -25,6 +106,15 @@
       "state" : {
         "revision" : "bf8a1eb6e9ce045299a27666c99dda2ece91059b",
         "version" : "0.2.4"
+      }
+    },
+    {
+      "identity" : "menubuilder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/j-f1/MenuBuilder",
+      "state" : {
+        "branch" : "main",
+        "revision" : "bb7639df2369690228ee4650c0cc9f9e29cc4f1c"
       }
     },
     {
@@ -55,12 +145,21 @@
       }
     },
     {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
+      }
+    },
+    {
       "identity" : "sparkle",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sparkle-project/Sparkle",
       "state" : {
-        "revision" : "2a98381dfe72e24bf593c5c06d2c4fc1763c3f19",
-        "version" : "2.3.0"
+        "revision" : "9d85a02fe7916caa7531847452c4933d331503a5",
+        "version" : "2.3.1"
       }
     },
     {

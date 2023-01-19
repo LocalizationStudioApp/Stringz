@@ -13,6 +13,7 @@
                 <outlet property="closeWindowButton" destination="zJk-he-hXV" id="tWJ-uS-tYV"/>
                 <outlet property="openProjectActionView" destination="or8-XV-BbW" id="W0X-tx-eIZ"/>
                 <outlet property="recentProjectTableView" destination="ot6-Ke-cWg" id="Xfv-JM-Wxq"/>
+                <outlet property="recentProjectView" destination="zC3-5s-dHT" id="zIN-Hv-C7Z"/>
                 <outlet property="showWindowButton" destination="klD-NC-JGV" id="8Uq-4q-OZ7"/>
                 <outlet property="versionField" destination="BYm-lj-Anw" id="ZLo-Gz-8xf"/>
                 <outlet property="welcomeView" destination="vn6-Vu-Mfk" id="mIb-9T-VFD"/>
@@ -25,7 +26,7 @@
             <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="800" height="460"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
             <view key="contentView" autoresizesSubviews="NO" wantsLayer="YES" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="460"/>
                 <subviews>

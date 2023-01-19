@@ -65,6 +65,11 @@
 		E951C72A2961BC6800EC51AC /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = E951C7292961BC6800EC51AC /* Collections */; };
 		E951C72C2961BC6800EC51AC /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = E951C72B2961BC6800EC51AC /* OrderedCollections */; };
 		E951C72E2961E12D00EC51AC /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = E951C72D2961E12D00EC51AC /* Then.swift */; };
+		E95C7974297928E500EBCCBF /* DSFAppKitBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = E95C7973297928E500EBCCBF /* DSFAppKitBuilder */; };
+		E95C797729792C1C00EBCCBF /* CocoaPreviews in Frameworks */ = {isa = PBXBuildFile; productRef = E95C797629792C1C00EBCCBF /* CocoaPreviews */; };
+		E95C797A2979329000EBCCBF /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = E95C79792979329000EBCCBF /* Defaults */; };
+		E95C797D29793AAE00EBCCBF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E95C797C29793AAE00EBCCBF /* SnapKit */; };
+		E95C798029794CF600EBCCBF /* MenuBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = E95C797F29794CF600EBCCBF /* MenuBuilder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,15 +132,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E95C797A2979329000EBCCBF /* Defaults in Frameworks */,
 				71FFCF5D2613AB8500D7414D /* Sparkle in Frameworks */,
+				E95C797D29793AAE00EBCCBF /* SnapKit in Frameworks */,
+				E95C798029794CF600EBCCBF /* MenuBuilder in Frameworks */,
 				71EBAB772584E06700900A73 /* FileWatcher in Frameworks */,
 				E951C72A2961BC6800EC51AC /* Collections in Frameworks */,
 				71B65F91258FE5B300B2A6D2 /* Preferences in Frameworks */,
 				71E0DB4C25A1018B0097F5B5 /* ValueTransformerKit in Frameworks */,
+				E95C7974297928E500EBCCBF /* DSFAppKitBuilder in Frameworks */,
 				E951C72C2961BC6800EC51AC /* OrderedCollections in Frameworks */,
 				71AD88432510FE150056A8C2 /* XcodeProj in Frameworks */,
 				71FB6F9D258D0A3E00800E63 /* AppCenterAnalytics in Frameworks */,
 				71FB6F9B258D0A3E00800E63 /* AppCenterCrashes in Frameworks */,
+				E95C797729792C1C00EBCCBF /* CocoaPreviews in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +308,11 @@
 				71FFCF5C2613AB8500D7414D /* Sparkle */,
 				E951C7292961BC6800EC51AC /* Collections */,
 				E951C72B2961BC6800EC51AC /* OrderedCollections */,
+				E95C7973297928E500EBCCBF /* DSFAppKitBuilder */,
+				E95C797629792C1C00EBCCBF /* CocoaPreviews */,
+				E95C79792979329000EBCCBF /* Defaults */,
+				E95C797C29793AAE00EBCCBF /* SnapKit */,
+				E95C797F29794CF600EBCCBF /* MenuBuilder */,
 			);
 			productName = Stringz;
 			productReference = 7183A54E1EE81960007E88FF /* Stringz.app */;
@@ -336,6 +351,11 @@
 				71E0DB4A25A1018B0097F5B5 /* XCRemoteSwiftPackageReference "ValueTransformerKit" */,
 				71FFCF5B2613AB8500D7414D /* XCRemoteSwiftPackageReference "Sparkle" */,
 				E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */,
+				E95C7972297928E500EBCCBF /* XCRemoteSwiftPackageReference "DSFAppKitBuilder" */,
+				E95C797529792C1C00EBCCBF /* XCRemoteSwiftPackageReference "CocoaPreviews" */,
+				E95C79782979329000EBCCBF /* XCRemoteSwiftPackageReference "Defaults" */,
+				E95C797B29793AAE00EBCCBF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E95C797E29794CF600EBCCBF /* XCRemoteSwiftPackageReference "MenuBuilder" */,
 			);
 			productRefGroup = 7183A54F1EE81960007E88FF /* Products */;
 			projectDirPath = "";
@@ -537,7 +557,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 44;
-				DEVELOPMENT_TEAM = D5Q73692VW;
+				DEVELOPMENT_TEAM = ZF2GY8W6BW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Stringz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -563,7 +583,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 44;
-				DEVELOPMENT_TEAM = D5Q73692VW;
+				DEVELOPMENT_TEAM = ZF2GY8W6BW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Stringz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -659,6 +679,46 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		E95C7972297928E500EBCCBF /* XCRemoteSwiftPackageReference "DSFAppKitBuilder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dagronf/DSFAppKitBuilder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		E95C797529792C1C00EBCCBF /* XCRemoteSwiftPackageReference "CocoaPreviews" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Mx-Iris/CocoaPreviews";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		E95C79782979329000EBCCBF /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
+		E95C797B29793AAE00EBCCBF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		E95C797E29794CF600EBCCBF /* XCRemoteSwiftPackageReference "MenuBuilder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/j-f1/MenuBuilder";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -706,6 +766,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		E95C7973297928E500EBCCBF /* DSFAppKitBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E95C7972297928E500EBCCBF /* XCRemoteSwiftPackageReference "DSFAppKitBuilder" */;
+			productName = DSFAppKitBuilder;
+		};
+		E95C797629792C1C00EBCCBF /* CocoaPreviews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E95C797529792C1C00EBCCBF /* XCRemoteSwiftPackageReference "CocoaPreviews" */;
+			productName = CocoaPreviews;
+		};
+		E95C79792979329000EBCCBF /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E95C79782979329000EBCCBF /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		E95C797C29793AAE00EBCCBF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E95C797B29793AAE00EBCCBF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		E95C797F29794CF600EBCCBF /* MenuBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E95C797E29794CF600EBCCBF /* XCRemoteSwiftPackageReference "MenuBuilder" */;
+			productName = MenuBuilder;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

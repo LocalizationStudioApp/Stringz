@@ -10,6 +10,11 @@ import Foundation
 import Cocoa
 import PathKit
 import OrderedCollections
+import Defaults
+extension OrderedSet<String>: Defaults.Serializable {}
+extension Defaults.Keys {
+    static let recentProjectPaths = Key<OrderedSet<String>>("recentProjectPaths", default: [])
+}
 
 enum SearchType: Int {
     case all
@@ -70,8 +75,6 @@ extension UserDefaults {
     static let KeyPlistImportAll = "stringz.plist.importAll"
     static let KeyPlistKeys = "stringz.plist.keys"
 
-    static let KeyRecentProjectPaths = "stringz.recentProjectPaths"
-
     static func clearAll() {
         let domain = Bundle.main.bundleIdentifier!
         standard.removePersistentDomain(forName: domain)
@@ -114,7 +117,6 @@ extension UserDefaults {
 
             KeyPlistImportAll: false,
 
-            KeyRecentProjectPaths: [],
         ])
 
         if storyboardXcodePath == nil {
@@ -314,19 +316,6 @@ extension UserDefaults {
         set {
             let data = try? NSKeyedArchiver.archivedData(withRootObject: newValue, requiringSecureCoding: false)
             standard.set(data, forKey: KeyPlistKeys)
-        }
-    }
-
-    static var recentProjectPaths: OrderedSet<String> {
-        get {
-            guard let data = standard.data(forKey: KeyRecentProjectPaths),
-                  let decode = try? JSONDecoder().decode(OrderedSet<String>.self, from: data)
-            else { return [] }
-            return decode
-        }
-        set {
-            let encode = try? JSONEncoder().encode(newValue)
-            standard.set(encode, forKey: KeyRecentProjectPaths)
         }
     }
 }
