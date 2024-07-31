@@ -6,14 +6,9 @@
 //
 
 import Cocoa
-import DSFAppKitBuilder
 import SwiftUI
-import CocoaPreviews
-import Defaults
 import Combine
 import SnapKit
-import Collections
-import MenuBuilder
 
 class RecentProjectTableViewCell: NSTableCellView {
     @IBOutlet var iconImageView: NSImageView!
@@ -22,7 +17,7 @@ class RecentProjectTableViewCell: NSTableCellView {
 }
 
 class WelcomeWindowController: NSWindowController {
-    typealias Handler = (String?) -> Void
+    typealias Handler = (URL?) -> Void
 
     @discardableResult
     static func createWelcomeWindow(openProjectHandler: @escaping Handler) -> WelcomeWindowController {
@@ -55,19 +50,23 @@ class WelcomeWindowController: NSWindowController {
 
     @IBOutlet private var recentProjectView: NSView!
 
-    private let recentProjectEmptyView = DSFAppKitBuilderView {
-        ZStack {
-            ZLayer(layoutType: .center) {
-                Label("No Recent Projects")
-                    .font(.systemFont(ofSize: 20))
-                    .alignment(.center)
-            }
-        }
-        .width(300)
+//    private let recentProjectEmptyView = DSFAppKitBuilderView {
+//        ZStack {
+//            ZLayer(layoutType: .center) {
+//                Label("No Recent Projects")
+//                    .font(.systemFont(ofSize: 20))
+//                    .alignment(.center)
+//            }
+//        }
+//        .width(300)
+//    }
+
+//    @Default(.recentProjectPaths) var recentProjectPaths
+
+    var recentDocumentURLs: [URL] {
+        NSDocumentController.shared.recentDocumentURLs
     }
-
-    @Default(.recentProjectPaths) var recentProjectPaths
-
+    
     var cancellable: Set<AnyCancellable> = []
 
     var openProjectHandler: Handler?
@@ -110,35 +109,28 @@ class WelcomeWindowController: NSWindowController {
             $0.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(openNewProject(_:))))
         }
 
-        _recentProjectPaths.publisher
-            .sink { [weak self] paths in
-                self?.recentProjectTableView.isHidden = paths.newValue.isEmpty
-                self?.recentProjectEmptyView.isHidden = !paths.newValue.isEmpty
-                self?.recentProjectTableView.reloadData()
-            }
-            .store(in: &cancellable)
+//        recentProjectView.do {
+//            $0.addSubview(recentProjectEmptyView)
+//        }
 
-        recentProjectView.do {
-            $0.addSubview(recentProjectEmptyView)
-        }
-
-        recentProjectEmptyView.do {
-            $0.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-        }
+//        recentProjectEmptyView.do {
+//            $0.snp.makeConstraints { make in
+//                make.edges.equalToSuperview()
+//            }
+//        }
 
         recentProjectTableView.do {
-            $0.menu = NSMenu {
-                MenuItem("Show in Finder")
-                    .onSelect { [weak self] in
-                        guard let self = self, self.recentProjectTableView.clickedRow >= 0 else { return }
-                        NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: self.recentProjectPaths[self.recentProjectTableView.clickedRow])])
-                    }
+            $0.menu = NSMenu().then {
+                $0.addItem(withTitle: "Show in Finder", action: #selector(showInFinderAction(_:)), keyEquivalent: "")
             }
         }
     }
     
+    @objc func showInFinderAction(_ menuItem: NSMenuItem) {
+        guard recentProjectTableView.clickedRow >= 0 else { return }
+        let url = NSDocumentController.shared.recentDocumentURLs[recentProjectTableView.clickedRow]
+        NSWorkspace.shared.activateFileViewerSelecting([url])
+    }
 
     @objc func openNewProject(_ sender: NSClickGestureRecognizer) {
         openProjectHandler?(nil)
@@ -146,7 +138,7 @@ class WelcomeWindowController: NSWindowController {
     }
 
     @IBAction func openRecentProject(_ sender: NSTableView) {
-        openProjectHandler?(recentProjectPaths[sender.clickedRow])
+        openProjectHandler?(recentDocumentURLs[sender.clickedRow])
         close()
     }
 
@@ -165,22 +157,22 @@ extension WelcomeWindowController: NSWindowDelegate {
 
     func windowDidBecomeKey(_ notification: Notification) {
         recentProjectTableView.reloadData()
-        print(recentProjectPaths)
     }
 }
 
 extension WelcomeWindowController: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        recentProjectPaths.count
+        recentDocumentURLs.count
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: .recentProjectTableViewCell, owner: self) as? RecentProjectTableViewCell else { return nil }
-        let projectPath = recentProjectPaths[row]
-        let properties = try? URL(fileURLWithPath: projectPath).resourceValues(forKeys: [.localizedNameKey, .effectiveIconKey])
+        let projectURL = recentDocumentURLs[row]
+        let properties = try? projectURL.resourceValues(forKeys: [.localizedNameKey, .effectiveIconKey])
         cell.iconImageView.image = properties?.effectiveIcon as? NSImage
         cell.nameField.stringValue = properties?.localizedName ?? ""
-        cell.pathField.stringValue = projectPath
+        cell.pathField.stringValue = projectURL.path
+        cell.pathField.toolTip = projectURL.path
         return cell
     }
 }

@@ -15,7 +15,6 @@ import Sparkle
 import Preferences
 import Combine
 import ValueTransformerKit
-import Defaults
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -70,9 +69,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
 
 //        performOpen(self)
-        welcomeWindowController = WelcomeWindowController.createWelcomeWindow { openProjectPath in
-            if let openProjectPath = openProjectPath {
-                _ = self.openProject(URL(fileURLWithPath: openProjectPath))
+        welcomeWindowController = WelcomeWindowController.createWelcomeWindow { openProjectURL in
+            if let openProjectURL {
+                _ = self.openProject(openProjectURL)
             } else {
                 self.performOpen(self)
             }
@@ -90,6 +89,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 submitIssue(self)
             }
         }
+        
+        print(NSDocumentController.shared.recentDocumentURLs)
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
@@ -136,7 +137,7 @@ extension AppDelegate {
         dialog.begin { result in
             if result == NSApplication.ModalResponse.OK {
                 if let url = dialog.url, self.openProject(url) {
-                    Defaults[.recentProjectPaths].append(url.path)
+//                    Defaults[.recentProjectPaths].append(url.path)
                 } else {
                     let _ = Common.alert(message: "Unable to load your project", informative: "Stringz currently only supports Xcode projects (no support for workspaces), Please select a valid (.xcodeproj) file")
                 }

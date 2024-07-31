@@ -32,6 +32,10 @@ class MainWindowController: NSWindowController, NSWindowDelegate, EditorManagerD
         }
     }
 
+    var mainViewController: MainViewController {
+        contentViewController as! MainViewController
+    }
+    
     var tableView: NSTableView? {
         let viewController = contentViewController as! MainViewController
         return viewController.editorViewController.tableView
@@ -202,7 +206,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate, EditorManagerD
     }
 
     @objc func performReloadData(_ sender: Any) {
-        
+        loadProject()
     }
     
     @objc func performLocalize(_ sender: Any) {
@@ -405,6 +409,8 @@ extension MainWindowController {
                 self.dirtyFilesUUids.append(file.uuid)
                 NotificationCenter.default.post(name: .saveFile(uuid: file.uuid), object: nil)
             }
+        
+        mainViewController.sidebarViewController.outlineView.reloadData()
     }
 
     func removeValueSets(_ valueSets: [ValueSet], from localizableIndex: Int? = nil, registerActionName: Bool = true) {
@@ -433,6 +439,8 @@ extension MainWindowController {
                 self.dirtyFilesUUids.append(file.uuid)
                 NotificationCenter.default.post(name: .saveFile(uuid: file.uuid), object: nil)
             }
+        
+        mainViewController.sidebarViewController.outlineView.reloadData()
     }
 
     func updateValueSet(_ valueSet: ValueSet, with identifier: String, newValue: String, in localizableIndex: Int? = nil, registerActionName: Bool = true) {

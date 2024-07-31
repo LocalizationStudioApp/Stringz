@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,7 +41,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="app_icon@512x2" id="2bG-Nf-1Fe"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OU0-EN-OMF">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OU0-EN-OMF">
                                 <rect key="frame" x="91" y="210" width="319" height="45"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Welcome to Stringz" id="qrC-aH-75k">
                                     <font key="font" metaFont="system" size="38"/>
@@ -49,7 +49,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BYm-lj-Anw">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BYm-lj-Anw">
                                 <rect key="frame" x="210" y="184" width="81" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Version 0.7.5" id="L8i-IZ-bnC">
                                     <font key="font" metaFont="system"/>
@@ -69,7 +69,7 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="xcode.project_Bold-Large" id="AW6-8A-KmV"/>
                                         <color key="contentTintColor" name="AccentColor"/>
                                     </imageView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GAb-kg-pts">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GAb-kg-pts">
                                         <rect key="frame" x="43" y="27" width="99" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Open a project" id="Dm2-73-Xdf">
                                             <font key="font" metaFont="systemBold"/>
@@ -77,7 +77,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nNg-Vm-eTI">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nNg-Vm-eTI">
                                         <rect key="frame" x="43" y="10" width="180" height="15"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Open an existing xcode project" id="2uK-DT-8fA">
                                             <font key="font" metaFont="cellTitle"/>
@@ -105,6 +105,7 @@
                                 </buttonCell>
                                 <symbolConfiguration key="symbolConfiguration" configurationType="font">
                                     <font key="font" metaFont="system"/>
+                                    <nil key="locale"/>
                                 </symbolConfiguration>
                                 <connections>
                                     <action selector="closeWindowAction:" target="-2" id="owL-En-xcD"/>
@@ -112,14 +113,14 @@
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="klD-NC-JGV">
                                 <rect key="frame" x="53" y="6" width="275" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="273" id="YB2-zn-2p9"/>
-                                    <constraint firstAttribute="height" constant="30" id="eqS-hx-c6A"/>
-                                </constraints>
                                 <buttonCell key="cell" type="check" title="Show this window when Stringz launches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="NpC-P7-fJm">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="273" id="YB2-zn-2p9"/>
+                                    <constraint firstAttribute="height" constant="30" id="eqS-hx-c6A"/>
+                                </constraints>
                                 <connections>
                                     <action selector="changeShowWelcomeWhenLaunch:" target="-2" id="dRX-GP-HKI"/>
                                 </connections>
@@ -187,7 +188,7 @@
                                                                             </constraints>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSAddTemplate" id="XlO-4y-7ON"/>
                                                                         </imageView>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SE-wO-50q">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SE-wO-50q">
                                                                             <rect key="frame" x="38" y="22" width="96" height="16"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="knd-mk-QHG">
                                                                                 <font key="font" metaFont="system"/>
@@ -195,9 +196,9 @@
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a30-h8-nP9">
+                                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a30-h8-nP9">
                                                                             <rect key="frame" x="38" y="6" width="33" height="14"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" usesSingleLineMode="YES" id="vaU-jj-OwG">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Label" usesSingleLineMode="YES" id="vaU-jj-OwG">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" red="0.68623799090000004" green="0.66275233030000003" blue="0.66666656729999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -205,7 +206,9 @@
                                                                         </textField>
                                                                     </subviews>
                                                                     <constraints>
+                                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a30-h8-nP9" secondAttribute="trailing" constant="10" id="6ey-cs-W5a"/>
                                                                         <constraint firstItem="a30-h8-nP9" firstAttribute="bottom" secondItem="Ccf-FH-90b" secondAttribute="bottom" id="FFa-zm-dHK"/>
+                                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1SE-wO-50q" secondAttribute="trailing" constant="10" id="IIA-kc-P2k"/>
                                                                         <constraint firstItem="1SE-wO-50q" firstAttribute="top" secondItem="Ccf-FH-90b" secondAttribute="top" id="LhW-4Z-wC4"/>
                                                                         <constraint firstItem="Ccf-FH-90b" firstAttribute="leading" secondItem="opZ-24-M1j" secondAttribute="leading" id="ZvZ-Tx-rSD"/>
                                                                         <constraint firstItem="a30-h8-nP9" firstAttribute="leading" secondItem="Ccf-FH-90b" secondAttribute="trailing" constant="8" id="b18-gz-Qh5"/>

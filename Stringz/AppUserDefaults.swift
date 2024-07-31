@@ -9,12 +9,6 @@
 import Foundation
 import Cocoa
 import PathKit
-import OrderedCollections
-import Defaults
-extension OrderedSet<String>: Defaults.Serializable {}
-extension Defaults.Keys {
-    static let recentProjectPaths = Key<OrderedSet<String>>("recentProjectPaths", default: [])
-}
 
 enum SearchType: Int {
     case all

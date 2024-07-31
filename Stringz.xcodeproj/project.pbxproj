@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -59,15 +59,11 @@
 		71FB6F9B258D0A3E00800E63 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB6F9A258D0A3E00800E63 /* AppCenterCrashes */; };
 		71FB6F9D258D0A3E00800E63 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB6F9C258D0A3E00800E63 /* AppCenterAnalytics */; };
 		71FFCF5D2613AB8500D7414D /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 71FFCF5C2613AB8500D7414D /* Sparkle */; };
+		E907C7042C5A431800A0733C /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = E907C7032C5A431800A0733C /* OpenAI */; };
+		E907C7072C5A433800A0733C /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = E907C7062C5A433800A0733C /* GoogleGenerativeAI */; };
 		E92C32FA29609F9B00C76172 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C32F829609F9B00C76172 /* WelcomeWindowController.swift */; };
 		E951C7252961B11500EC51AC /* WelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E951C7242961B11500EC51AC /* WelcomeWindowController.xib */; };
-		E951C7272961B92400EC51AC /* WelcomeWindowController+Backup.xib in Resources */ = {isa = PBXBuildFile; fileRef = E951C7262961B92400EC51AC /* WelcomeWindowController+Backup.xib */; };
-		E951C72A2961BC6800EC51AC /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = E951C7292961BC6800EC51AC /* Collections */; };
-		E951C72C2961BC6800EC51AC /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = E951C72B2961BC6800EC51AC /* OrderedCollections */; };
 		E951C72E2961E12D00EC51AC /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = E951C72D2961E12D00EC51AC /* Then.swift */; };
-		E95C7974297928E500EBCCBF /* DSFAppKitBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = E95C7973297928E500EBCCBF /* DSFAppKitBuilder */; };
-		E95C797729792C1C00EBCCBF /* CocoaPreviews in Frameworks */ = {isa = PBXBuildFile; productRef = E95C797629792C1C00EBCCBF /* CocoaPreviews */; };
-		E95C797A2979329000EBCCBF /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = E95C79792979329000EBCCBF /* Defaults */; };
 		E95C797D29793AAE00EBCCBF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E95C797C29793AAE00EBCCBF /* SnapKit */; };
 		E95C798029794CF600EBCCBF /* MenuBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = E95C797F29794CF600EBCCBF /* MenuBuilder */; };
 /* End PBXBuildFile section */
@@ -123,7 +119,6 @@
 		71F4F92925963D0D00743CB7 /* AppToolbarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppToolbarItems.swift; sourceTree = "<group>"; };
 		E92C32F829609F9B00C76172 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWindowController.swift; sourceTree = "<group>"; };
 		E951C7242961B11500EC51AC /* WelcomeWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeWindowController.xib; sourceTree = "<group>"; };
-		E951C7262961B92400EC51AC /* WelcomeWindowController+Backup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WelcomeWindowController+Backup.xib"; sourceTree = "<group>"; };
 		E951C72D2961E12D00EC51AC /* Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,20 +127,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E95C797A2979329000EBCCBF /* Defaults in Frameworks */,
+				E907C7042C5A431800A0733C /* OpenAI in Frameworks */,
 				71FFCF5D2613AB8500D7414D /* Sparkle in Frameworks */,
+				E907C7072C5A433800A0733C /* GoogleGenerativeAI in Frameworks */,
 				E95C797D29793AAE00EBCCBF /* SnapKit in Frameworks */,
 				E95C798029794CF600EBCCBF /* MenuBuilder in Frameworks */,
 				71EBAB772584E06700900A73 /* FileWatcher in Frameworks */,
-				E951C72A2961BC6800EC51AC /* Collections in Frameworks */,
 				71B65F91258FE5B300B2A6D2 /* Preferences in Frameworks */,
 				71E0DB4C25A1018B0097F5B5 /* ValueTransformerKit in Frameworks */,
-				E95C7974297928E500EBCCBF /* DSFAppKitBuilder in Frameworks */,
-				E951C72C2961BC6800EC51AC /* OrderedCollections in Frameworks */,
 				71AD88432510FE150056A8C2 /* XcodeProj in Frameworks */,
 				71FB6F9D258D0A3E00800E63 /* AppCenterAnalytics in Frameworks */,
 				71FB6F9B258D0A3E00800E63 /* AppCenterCrashes in Frameworks */,
-				E95C797729792C1C00EBCCBF /* CocoaPreviews in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,9 +194,9 @@
 				71B371F9259F6036003DB79E /* Preferences */,
 				71B37211259F89FF003DB79E /* StringzApp.swift */,
 				7183A5511EE81960007E88FF /* AppDelegate.swift */,
+				E92C32F829609F9B00C76172 /* WelcomeWindowController.swift */,
 				7183A5771EE81AFD007E88FF /* MainWindowController.swift */,
 				7183A5781EE81AFD007E88FF /* MainViewController.swift */,
-				E92C32F829609F9B00C76172 /* WelcomeWindowController.swift */,
 				7183A5791EE81AFD007E88FF /* SidebarViewController.swift */,
 				7183A57A1EE81AFD007E88FF /* EditorViewController.swift */,
 				71E0DB3E25A0E2D00097F5B5 /* AddStringViewController.swift */,
@@ -246,7 +238,6 @@
 			children = (
 				71AFEA9D25893BF70054E5F2 /* Main.storyboard */,
 				E951C7242961B11500EC51AC /* WelcomeWindowController.xib */,
-				E951C7262961B92400EC51AC /* WelcomeWindowController+Backup.xib */,
 				7183A5551EE81960007E88FF /* Assets.xcassets */,
 				7183A55A1EE81960007E88FF /* Info.plist */,
 				71B371F6259F5C8F003DB79E /* GeneralPreference.xib */,
@@ -306,13 +297,10 @@
 				71B65F90258FE5B300B2A6D2 /* Preferences */,
 				71E0DB4B25A1018B0097F5B5 /* ValueTransformerKit */,
 				71FFCF5C2613AB8500D7414D /* Sparkle */,
-				E951C7292961BC6800EC51AC /* Collections */,
-				E951C72B2961BC6800EC51AC /* OrderedCollections */,
-				E95C7973297928E500EBCCBF /* DSFAppKitBuilder */,
-				E95C797629792C1C00EBCCBF /* CocoaPreviews */,
-				E95C79792979329000EBCCBF /* Defaults */,
 				E95C797C29793AAE00EBCCBF /* SnapKit */,
 				E95C797F29794CF600EBCCBF /* MenuBuilder */,
+				E907C7032C5A431800A0733C /* OpenAI */,
+				E907C7062C5A433800A0733C /* GoogleGenerativeAI */,
 			);
 			productName = Stringz;
 			productReference = 7183A54E1EE81960007E88FF /* Stringz.app */;
@@ -350,12 +338,10 @@
 				71B65F8F258FE5B300B2A6D2 /* XCRemoteSwiftPackageReference "Preferences" */,
 				71E0DB4A25A1018B0097F5B5 /* XCRemoteSwiftPackageReference "ValueTransformerKit" */,
 				71FFCF5B2613AB8500D7414D /* XCRemoteSwiftPackageReference "Sparkle" */,
-				E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */,
-				E95C7972297928E500EBCCBF /* XCRemoteSwiftPackageReference "DSFAppKitBuilder" */,
-				E95C797529792C1C00EBCCBF /* XCRemoteSwiftPackageReference "CocoaPreviews" */,
-				E95C79782979329000EBCCBF /* XCRemoteSwiftPackageReference "Defaults" */,
 				E95C797B29793AAE00EBCCBF /* XCRemoteSwiftPackageReference "SnapKit" */,
 				E95C797E29794CF600EBCCBF /* XCRemoteSwiftPackageReference "MenuBuilder" */,
+				E907C7022C5A431800A0733C /* XCRemoteSwiftPackageReference "OpenAI" */,
+				E907C7052C5A433800A0733C /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 			);
 			productRefGroup = 7183A54F1EE81960007E88FF /* Products */;
 			projectDirPath = "";
@@ -373,7 +359,6 @@
 			files = (
 				71B371FC259F6CB9003DB79E /* ImportingPreference.xib in Resources */,
 				71B3720C259F7B80003DB79E /* StoryboardPreference.xib in Resources */,
-				E951C7272961B92400EC51AC /* WelcomeWindowController+Backup.xib in Resources */,
 				71B371F7259F5C8F003DB79E /* GeneralPreference.xib in Resources */,
 				7183A5561EE81960007E88FF /* Assets.xcassets in Resources */,
 				E951C7252961B11500EC51AC /* WelcomeWindowController.xib in Resources */,
@@ -557,7 +542,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 44;
-				DEVELOPMENT_TEAM = ZF2GY8W6BW;
+				DEVELOPMENT_TEAM = D5Q73692VW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Stringz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -566,7 +551,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.7.5;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.stringz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JH.Stringz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -583,7 +568,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 44;
-				DEVELOPMENT_TEAM = ZF2GY8W6BW;
+				DEVELOPMENT_TEAM = D5Q73692VW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Stringz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -592,7 +577,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.7.5;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.stringz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JH.Stringz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -671,36 +656,20 @@
 				minimumVersion = 2.3.0;
 			};
 		};
-		E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+		E907C7022C5A431800A0733C /* XCRemoteSwiftPackageReference "OpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-collections.git";
+			repositoryURL = "https://github.com/MacPaw/OpenAI";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 0.3.0;
 			};
 		};
-		E95C7972297928E500EBCCBF /* XCRemoteSwiftPackageReference "DSFAppKitBuilder" */ = {
+		E907C7052C5A433800A0733C /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dagronf/DSFAppKitBuilder";
+			repositoryURL = "https://github.com/google-gemini/generative-ai-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-		E95C797529792C1C00EBCCBF /* XCRemoteSwiftPackageReference "CocoaPreviews" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Mx-Iris/CocoaPreviews";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		E95C79782979329000EBCCBF /* XCRemoteSwiftPackageReference "Defaults" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Defaults";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.1.0;
+				minimumVersion = 0.5.4;
 			};
 		};
 		E95C797B29793AAE00EBCCBF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -757,30 +726,15 @@
 			package = 71FFCF5B2613AB8500D7414D /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
 		};
-		E951C7292961BC6800EC51AC /* Collections */ = {
+		E907C7032C5A431800A0733C /* OpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = Collections;
+			package = E907C7022C5A431800A0733C /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
 		};
-		E951C72B2961BC6800EC51AC /* OrderedCollections */ = {
+		E907C7062C5A433800A0733C /* GoogleGenerativeAI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E951C7282961BC6800EC51AC /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = OrderedCollections;
-		};
-		E95C7973297928E500EBCCBF /* DSFAppKitBuilder */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E95C7972297928E500EBCCBF /* XCRemoteSwiftPackageReference "DSFAppKitBuilder" */;
-			productName = DSFAppKitBuilder;
-		};
-		E95C797629792C1C00EBCCBF /* CocoaPreviews */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E95C797529792C1C00EBCCBF /* XCRemoteSwiftPackageReference "CocoaPreviews" */;
-			productName = CocoaPreviews;
-		};
-		E95C79792979329000EBCCBF /* Defaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E95C79782979329000EBCCBF /* XCRemoteSwiftPackageReference "Defaults" */;
-			productName = Defaults;
+			package = E907C7052C5A433800A0733C /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
 		};
 		E95C797C29793AAE00EBCCBF /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
