@@ -8,10 +8,9 @@
 
 import Foundation
 import Cocoa
-import XcodeProj
-import PathKit
 import FileWatcher
 import Combine
+import StringzCore
 
 class MainWindowController: NSWindowController, NSWindowDelegate, EditorManagerDelegate {
     var appDelegate: AppDelegate {
@@ -280,7 +279,7 @@ extension MainWindowController {
         }
 
         // Load the localizables in the project
-        localizables = IosImporter.loadProject(from: currentProjectPath, with: &importerOptions)
+        localizables = Importer.loadProject(from: currentProjectPath, with: &importerOptions)
 
         // Notifiy sidebar and table view to reload content
         let sidebarViewController = (contentViewController as! MainViewController).sidebarViewController
@@ -319,7 +318,7 @@ extension MainWindowController {
                 var valueSets = [ValueSet]()
                 for file in localizable.files {
                     if self.importerOptions.xcodePath == nil, file.type == .storyboard || file.type == .xib { continue }
-                    let values = IosImporter.values(in: file, with: self.importerOptions)
+                    let values = Importer.values(in: file, with: self.importerOptions)
 
                     for value in values {
                         let valueSet = valueSets.setOrAppend(value: value.value, for: value.key, and: file.language)
@@ -513,7 +512,7 @@ extension MainWindowController {
         guard
             !localizable.languages.contains(language),
             let currentProjectPath = currentProjectPath,
-            let file = IosImporter.addLanguage(language, to: localizable.name, with: data ?? Data(), in: currentProjectPath)
+            let file = Importer.addLanguage(language, to: localizable.name, with: data ?? Data(), in: currentProjectPath)
         else { return }
 
         localizable.files.insert(file, at: fileIndex)
@@ -545,7 +544,7 @@ extension MainWindowController {
             let file = localizable.file(for: language),
             file.type == .strings,
             let fileIndex = localizable.files.firstIndex(where: { $0.language == language }),
-            let data = IosImporter.removeLanguage(file: file, in: currentProjectPath)
+            let data = Importer.removeLanguage(file: file, in: currentProjectPath)
         else { return }
 
         localizable.files.removeAll(where: { $0.language == language })
@@ -574,7 +573,7 @@ extension MainWindowController {
 
         // Localize the file
         do {
-            try IosImporter.localize(&localizable, in: currentProjectPath)
+            try Importer.localize(&localizable, in: currentProjectPath)
         } catch {
             // TODO: Send error report to AppCenter
             return
@@ -615,7 +614,7 @@ extension MainWindowController {
 
         // Unlocalize the file
         do {
-            try IosImporter.unlocalize(&localizable, in: currentProjectPath)
+            try Importer.unlocalize(&localizable, in: currentProjectPath)
         } catch {
             // TODO: Send error report to AppCenter
             return
@@ -650,7 +649,7 @@ extension MainWindowController {
             else { return }
 
             let values = localizable.values(byLanguage: file.language)
-            IosImporter.save(file: file, values: values, with: self.importerOptions)
+            Importer.save(file: file, values: values, with: self.importerOptions)
         }
 
         dirtyFilesUUids.removeAll()
@@ -674,7 +673,7 @@ extension MainWindowController {
             }
 
             let values = localizable.values(byLanguage: file.language)
-            IosImporter.save(file: file, values: values, with: self.importerOptions)
+            Importer.save(file: file, values: values, with: self.importerOptions)
         }
 
         let watchFileListener = { [weak self] (sender: NotificationCenter.Publisher.Output) in

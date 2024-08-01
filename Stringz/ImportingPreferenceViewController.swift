@@ -7,6 +7,7 @@
 
 import Cocoa
 import Preferences
+import StringzCore
 
 final class ImportingPreferenceViewController: PreferenceViewController, PreferencePane {
     let preferencePaneIdentifier = Preferences.PaneIdentifier.importing
@@ -95,28 +96,3 @@ extension ImportingPreferenceViewController: NSTableViewDelegate, NSTextFieldDel
     }
 }
 
-class IgnoredValue: NSObject, NSSecureCoding {
-    @objc dynamic var uuid: String
-    @objc dynamic var name: String
-
-    static var supportsSecureCoding: Bool {
-        return true
-    }
-
-    init(uuid: String, name: String) {
-        self.uuid = uuid
-        self.name = name
-    }
-
-    required convenience init(coder: NSCoder) {
-        let uuid = coder.decodeObject(forKey: "uuid") as! String
-        let name = coder.decodeObject(forKey: "name") as! String
-
-        self.init(uuid: uuid, name: name)
-    }
-
-    func encode(with coder: NSCoder) {
-        coder.encode(uuid, forKey: "uuid")
-        coder.encode(name, forKey: "name")
-    }
-}

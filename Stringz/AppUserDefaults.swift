@@ -6,33 +6,9 @@
 //  Copyright © 2017 Heysem Katibi. All rights reserved.
 //
 
-import Foundation
 import Cocoa
-import PathKit
-
-enum SearchType: Int {
-    case all
-    case untranslated
-    case translated
-}
-
-enum SearchScope: Int {
-    case all
-    case current
-}
-
-enum SearchField: Int {
-    case key
-    case comment
-    case values
-}
-
-enum SearchMode: Int {
-    case contains
-    case startsWith
-    case endsWith
-    case regularExpression
-}
+import Foundation
+import StringzCore
 
 extension UserDefaults {
     static let KeyHasOpenProjects = "stringz.hasOpenProjects"

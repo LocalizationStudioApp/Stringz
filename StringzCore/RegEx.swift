@@ -8,8 +8,8 @@
 
 import Foundation
 
-class RegEx {
-    class func matches(for regex: String, in text: String) -> [String] {
+public class RegEx {
+    public class func matches(for regex: String, in text: String) -> [String] {
         do {
             let regex = try NSRegularExpression(pattern: regex)
             let nsString = text as NSString
@@ -21,7 +21,7 @@ class RegEx {
         }
     }
 
-    class func replace(_ source: String, with text: String, using regex: String) -> String {
+    public class func replace(_ source: String, with text: String, using regex: String) -> String {
         do {
             let regex = try NSRegularExpression(pattern: regex)
             let nsString = source as NSString

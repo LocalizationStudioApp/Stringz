@@ -9,7 +9,7 @@
 import Foundation
 
 /// The languages available in iOS system, Every File must have a language. Default: `Language.base`
-enum Language: String, CaseIterable {
+public enum Language: String, CaseIterable {
     case base = "Base"
     case afrikaans = "af"
     case albanian = "sq"
@@ -143,7 +143,7 @@ enum Language: String, CaseIterable {
     case zulu = "zu"
 
     /// Returns a friendly name for the language to be displayed in the table view.
-    var fiendlyName: String {
+    public var fiendlyName: String {
         switch self {
         case .base: return "Base"
         case .afrikaans: return "Afrikaans"
@@ -280,7 +280,7 @@ enum Language: String, CaseIterable {
     }
 
     /// Returns the flag of the country in which the language is mostly used.
-    var flag: String {
+    public var flag: String {
         switch self {
         case .afrikaans: return "🇿🇦"
         case .albanian: return "🇦🇱"
@@ -418,7 +418,7 @@ enum Language: String, CaseIterable {
 }
 
 extension Language: Comparable {
-    static func < (lhs: Language, rhs: Language) -> Bool {
+    public static func < (lhs: Language, rhs: Language) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
 }

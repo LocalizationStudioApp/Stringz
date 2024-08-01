@@ -5,32 +5,32 @@
 //  Created by Heysem Katibi on 6.10.2020.
 //
 
-import Foundation
 import PathKit
+import Foundation
 
 /// Represents the file that holds the translations for a language on the disk drive.
-class File {
+public class File {
     /// The uuid of the file in the xcode project.
     ///
     /// This id is extremely important to find the file reference in the xcode project.
-    let uuid: String
+    public let uuid: String
 
     /// The type of the file. storyboard, xib, strings or config file.
-    let type: LocalizableType
+    public let type: LocalizableType
 
     /// The language of the string the file contains.
-    let language: Language
+    public let language: Language
 
     /// The physical path of the file on the disk drive.
-    let path: Path
+    public let path: Path
 
     /// The physical path of the project containing the file on the disk drive.
-    let projectPath: Path
+    public let projectPath: Path
 
     /// Extra information to attach to the file
-    var extras: [String: Any] = [:]
+    public var extras: [String: Any] = [:]
 
-    init(uuid: String, type: LocalizableType, language: Language, path: Path, projectPath: Path) {
+    public init(uuid: String, type: LocalizableType, language: Language, path: Path, projectPath: Path) {
         self.uuid = uuid
         self.type = type
         self.language = language
@@ -40,11 +40,11 @@ class File {
 }
 
 extension File: Hashable {
-    static func == (lhs: File, rhs: File) -> Bool {
+    public static func == (lhs: File, rhs: File) -> Bool {
         return lhs.uuid == rhs.uuid
     }
 
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(uuid)
     }
 }
@@ -53,7 +53,7 @@ extension File {
     /// The uuids of the corresponding xcode native targets that the file belongs to..
     ///
     /// This is is useful when adding new files to the project because we want to add the new file to the same targets as the old one.
-    var targetsUuids: [String] {
+    public var targetsUuids: [String] {
         get {
             return extras["targetsUuids"] as? [String] ?? []
         }
@@ -65,7 +65,7 @@ extension File {
     /// the uuid of the corresponding xcode configuration that the file belongs to.
     ///
     /// This is is useful when importing .plist files from the project.
-    var configurationUuid: String? {
+    public var configurationUuid: String? {
         get {
             return extras["configurationUuid"] as? String
         }

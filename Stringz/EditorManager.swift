@@ -7,6 +7,7 @@
 
 import Cocoa
 import Combine
+import StringzCore
 
 class EditorManager: NSObject {
     private var delegate: EditorManagerDelegate

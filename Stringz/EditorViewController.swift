@@ -8,6 +8,7 @@
 
 import Cocoa
 import Preferences
+import StringzCore
 
 class EditorViewController: NSViewController {
     @IBOutlet var scrollView: NSScrollView!
@@ -17,6 +18,7 @@ class EditorViewController: NSViewController {
     @IBOutlet var buttonEmpty: NSButton!
 
     private var windowController: MainWindowController!
+    
     private var localizables: [Localizable] {
         windowController?.localizables ?? []
     }

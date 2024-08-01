@@ -6,13 +6,13 @@
 //  Copyright © 2016 Heysem Katibi. All rights reserved.
 //
 
-import ObjectiveC
-import Foundation
 import Cocoa
 import XcodeProj
+import ObjectiveC
+import Foundation
 
-public extension Sequence {
-    func categorise<U: Hashable>(_ key: (Iterator.Element) -> U) -> [U: [Iterator.Element]] {
+extension Sequence {
+    public func categorise<U: Hashable>(_ key: (Iterator.Element) -> U) -> [U: [Iterator.Element]] {
         var dict: [U: [Iterator.Element]] = [:]
         for el in self {
             let key = key(el)
@@ -22,7 +22,7 @@ public extension Sequence {
     }
 }
 
-enum PBXFileType {
+public enum PBXFileType {
     case strings
     case stringsDict
     case storyboard
@@ -38,7 +38,7 @@ enum PBXFileType {
 }
 
 extension PBXFileReference {
-    var fileType: PBXFileType {
+    public var fileType: PBXFileType {
         guard let fileType = lastKnownFileType ?? explicitFileType else { return .unknown }
 
         switch fileType.lowercased() {
@@ -71,19 +71,19 @@ extension PBXFileReference {
 }
 
 extension StringProtocol {
-    func index<S: StringProtocol>(of string: S, options: String.CompareOptions = [], locale: Locale? = nil) -> Index? {
+    public func index<S: StringProtocol>(of string: S, options: String.CompareOptions = [], locale: Locale? = nil) -> Index? {
         range(of: string, options: options, locale: locale)?.lowerBound
     }
 
-    func endIndex<S: StringProtocol>(of string: S, options: String.CompareOptions = [], locale: Locale? = nil) -> Index? {
+    public func endIndex<S: StringProtocol>(of string: S, options: String.CompareOptions = [], locale: Locale? = nil) -> Index? {
         range(of: string, options: options, locale: locale)?.upperBound
     }
 
-    func indices<S: StringProtocol>(of string: S, options: String.CompareOptions = [], locale: Locale? = nil) -> [Index] {
+    public func indices<S: StringProtocol>(of string: S, options: String.CompareOptions = [], locale: Locale? = nil) -> [Index] {
         ranges(of: string, options: options, locale: locale).map(\.lowerBound)
     }
 
-    func ranges<S: StringProtocol>(of string: S, options: String.CompareOptions = [], locale: Locale? = nil) -> [Range<Index>] {
+    public func ranges<S: StringProtocol>(of string: S, options: String.CompareOptions = [], locale: Locale? = nil) -> [Range<Index>] {
         var result: [Range<Index>] = []
         var startIndex = self.startIndex
         while startIndex < endIndex,
@@ -97,9 +97,9 @@ extension StringProtocol {
     }
 }
 
-public extension MutableCollection where Self: RandomAccessCollection {
+extension MutableCollection where Self: RandomAccessCollection {
     /// Sort `self` in-place using criteria stored in a NSSortDescriptors array
-    mutating func sort(sortDescriptors theSortDescs: [NSSortDescriptor]) {
+    public mutating func sort(sortDescriptors theSortDescs: [NSSortDescriptor]) {
         sort { by:
             for sortDesc in theSortDescs {
                 switch sortDesc.compare($0, to: $1) {
@@ -113,10 +113,10 @@ public extension MutableCollection where Self: RandomAccessCollection {
     }
 }
 
-public extension Sequence where Iterator.Element: AnyObject {
+extension Sequence where Iterator.Element: AnyObject {
     /// Return an `Array` containing the sorted elements of `source`
     /// using criteria stored in a NSSortDescriptors array.
-    func sorted(sortDescriptors theSortDescs: [NSSortDescriptor]) -> [Self.Iterator.Element] {
+    public func sorted(sortDescriptors theSortDescs: [NSSortDescriptor]) -> [Self.Iterator.Element] {
         return sorted {
             for sortDesc in theSortDescs {
                 switch sortDesc.compare($0, to: $1) {
@@ -130,8 +130,8 @@ public extension Sequence where Iterator.Element: AnyObject {
     }
 }
 
-class VSSortDescriptor: NSSortDescriptor {
-    override func compare(_ lhs: Any, to rhs: Any) -> ComparisonResult {
+public class VSSortDescriptor: NSSortDescriptor {
+    public override func compare(_ lhs: Any, to rhs: Any) -> ComparisonResult {
         guard let key = key, let lhs = lhs as? ValueSet, let rhs = rhs as? ValueSet else { return .orderedSame }
 
         if key == "key" {

@@ -7,7 +7,6 @@
 
 import Cocoa
 import Preferences
-import PathKit
 
 final class StoryboardPreferenceViewController: PreferenceViewController, PreferencePane {
     let preferencePaneIdentifier = Preferences.PaneIdentifier.xib

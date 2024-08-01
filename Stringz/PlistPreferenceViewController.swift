@@ -7,6 +7,7 @@
 
 import Cocoa
 import Preferences
+import StringzCore
 
 final class PlistPreferenceViewController: PreferenceViewController, PreferencePane {
     let preferencePaneIdentifier = Preferences.PaneIdentifier.plist
@@ -101,40 +102,4 @@ extension PlistPreferenceViewController: NSTableViewDelegate, NSTextFieldDelegat
     }
 }
 
-class PlistKey: NSObject, NSSecureCoding {
-    @objc dynamic var uuid: String
-    @objc dynamic var name: String
-    @objc dynamic var friendlyName: String
 
-    static var supportsSecureCoding: Bool {
-        return true
-    }
-
-    init(uuid: String, name: String, friendlyName: String) {
-        self.uuid = uuid
-        self.name = name
-        self.friendlyName = friendlyName
-    }
-
-    required convenience init(coder: NSCoder) {
-        let uuid = coder.decodeObject(forKey: "uuid") as! String
-        let name = coder.decodeObject(forKey: "name") as! String
-        let friendlyName = coder.decodeObject(forKey: "friendlyName") as! String
-
-        self.init(uuid: uuid, name: name, friendlyName: friendlyName)
-    }
-
-    func encode(with coder: NSCoder) {
-        coder.encode(uuid, forKey: "uuid")
-        coder.encode(name, forKey: "name")
-        coder.encode(friendlyName, forKey: "friendlyName")
-    }
-}
-
-extension Array where Element == PlistKey {
-    mutating func appendIfDoesntExist(_ newElement: String) {
-        if !contains(where: { $0.name == newElement }) {
-            append(PlistKey(uuid: UUID().uuidString, name: newElement, friendlyName: ""))
-        }
-    }
-}

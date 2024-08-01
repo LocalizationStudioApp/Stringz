@@ -6,13 +6,13 @@
 //  Copyright © 2016 Heysem Katibi. All rights reserved.
 //
 
-import Foundation
-import XcodeProj
 import PathKit
+import XcodeProj
+import Foundation
 
-class IosImporter {
+public class Importer {
     /// Finds string values in *.strings files, This expression also matchs any comments the string might have.
-    static let findStringWithCommentExpression =
+    public static let findStringWithCommentExpression =
         "("
             + findInlineCommentExpression + "*"
             + findPrologueCommentExpression + "*"
@@ -22,26 +22,26 @@ class IosImporter {
             + findStringExpression
 
     /// Matches only string values in given *.strings file, Matches any whitespaces exsiting in between the values but doesn't match any comments.
-    static let findStringExpression = #"("[^\"]*"\s*=\s*".+?"\s*;)"#
+    public static let findStringExpression = #"("[^\"]*"\s*=\s*".+?"\s*;)"#
     /// Matches all unnecessary whitespaces the value might have, Can be used to clean the value.
-    static let cleanStringExpression = #""\s*=\s*""#
+    public static let cleanStringExpression = #""\s*=\s*""#
 
-    static let findInlineCommentExpression = #"(\/\/.*(\n\s*?))"#
-    static let findPrologueCommentExpression = #"(\/\*(.|\n)*?\*\/(\n\s*?)*)"#
+    public static let findInlineCommentExpression = #"(\/\/.*(\n\s*?))"#
+    public static let findPrologueCommentExpression = #"(\/\*(.|\n)*?\*\/(\n\s*?)*)"#
 
     /// Matches only comment values in given *.strings file, Matches any whitespaces exsiting in between the comments but doesn't match any values.
-    static let findCommentExpression = findInlineCommentExpression + "|" + findPrologueCommentExpression
+    public static let findCommentExpression = findInlineCommentExpression + "|" + findPrologueCommentExpression
     /// Matches all unnecessary whitespaces the comment might have, Can be used to clean the comment.
-    static let cleanCommentExpression = #"(\/\*\s*)|(\s*\*\/)|(\/\/\s*)"#
+    public static let cleanCommentExpression = #"(\/\*\s*)|(\s*\*\/)|(\/\/\s*)"#
     /// Matches an auto generated comment in storyboards
-    static let storyboardCommentExpression = #"(?i)^.*class(\s*)?=(\s*)?.*objectid(\s*)?=(\s*)?.*;.*$"#
+    public static let storyboardCommentExpression = #"(?i)^.*class(\s*)?=(\s*)?.*objectid(\s*)?=(\s*)?.*;.*$"#
 
     /// Matches variable values in info plist files
-    static let findVariableExpression = #"(?<=\$\().*(?=\))"#
+    public static let findVariableExpression = #"(?<=\$\().*(?=\))"#
     /// Matches the project project root variable in the path of info plist files,
-    static let cleanInfoPlistPathExpression = #"\$?\(.*\)\/?"#
+    public static let cleanInfoPlistPathExpression = #"\$?\(.*\)\/?"#
 
-    static func loadProject(from projectPath: Path, with options: inout ImporterOptions) -> [Localizable] {
+    public static func loadProject(from projectPath: Path, with options: inout ImporterOptions) -> [Localizable] {
         guard let xcodeProject = try? XcodeProj(path: projectPath) else { return [] }
 
         let variantGroups = xcodeProject.pbxproj.variantGroups
@@ -55,7 +55,7 @@ class IosImporter {
             guard name.localizedCaseInsensitiveContains("plist.strings") == false else { continue }
             let parentName = group.parent?.path ?? group.parent?.name ?? ""
 
-            let files = IosImporter.files(in: group, relativeTo: projectPath, with: nativeTargets)
+            let files = Importer.files(in: group, relativeTo: projectPath, with: nativeTargets)
             guard files.count > 0 else { continue }
             let localizable = Localizable(name: name, parentName: parentName, files: files)
             localizables.append(localizable)
@@ -78,7 +78,7 @@ class IosImporter {
         for fileReference in remainingFiles {
             guard
                 let name = fileReference.path,
-                let file = IosImporter.file(from: fileReference, relativeTo: projectPath, with: nativeTargets, defaultLanguage: .base)
+                let file = Importer.file(from: fileReference, relativeTo: projectPath, with: nativeTargets, defaultLanguage: .base)
             else { continue }
             let parentName = fileReference.parent?.path ?? fileReference.parent?.name ?? ""
 
@@ -95,13 +95,13 @@ class IosImporter {
 
             for configuration in configurations {
                 guard var plistName = configuration.buildSettings["INFOPLIST_FILE"] as? String, !plistName.isEmpty else { continue }
-                plistName = RegEx.replace(plistName, with: "", using: IosImporter.cleanInfoPlistPathExpression)
+                plistName = RegEx.replace(plistName, with: "", using: Importer.cleanInfoPlistPathExpression)
                 guard !plistNames.contains(plistName) else { continue }
                 plistNames.append(plistName)
 
                 let plistPath = projectPath.parent() + Path(stringLiteral: plistName)
                 guard let plistFileReference = plistFileReferences.first(where: { (try? $0.fullPath(sourceRoot: projectPath.parent())) == plistPath }) else { continue }
-                guard let plistFile = IosImporter.file(from: plistFileReference, relativeTo: projectPath, with: nativeTargets, defaultLanguage: .base) else { continue }
+                guard let plistFile = Importer.file(from: plistFileReference, relativeTo: projectPath, with: nativeTargets, defaultLanguage: .base) else { continue }
                 guard let name = plistFileReference.path else { continue }
                 let parentName = plistFileReference.parent?.path ?? plistFileReference.parent?.name ?? ""
 
@@ -114,7 +114,7 @@ class IosImporter {
                     targetFiles = targetFiles.filter { $0.file?.name?.caseInsensitiveCompare("InfoPlist.strings") == .orderedSame }
 
                     if let variantGroup = targetFiles.first?.file as? PBXVariantGroup {
-                        let filez = IosImporter.files(in: variantGroup, relativeTo: projectPath, with: nativeTargets)
+                        let filez = Importer.files(in: variantGroup, relativeTo: projectPath, with: nativeTargets)
                         files.append(contentsOf: filez)
                     }
                 }
@@ -144,14 +144,14 @@ class IosImporter {
         return localizables
     }
 
-    static func file(from fileReference: PBXFileReference, relativeTo projectPath: Path, with targets: [PBXNativeTarget], defaultLanguage: Language? = nil) -> File? {
+    public static func file(from fileReference: PBXFileReference, relativeTo projectPath: Path, with targets: [PBXNativeTarget], defaultLanguage: Language? = nil) -> File? {
         guard
-            let fileType = IosImporter.type(for: fileReference),
-            let fileLanguage = IosImporter.language(for: fileReference, defaultLanguage: defaultLanguage),
-            let filePath = IosImporter.path(for: fileReference, in: projectPath)
+            let fileType = Importer.type(for: fileReference),
+            let fileLanguage = Importer.language(for: fileReference, defaultLanguage: defaultLanguage),
+            let filePath = Importer.path(for: fileReference, in: projectPath)
         else { return nil }
 
-        let fileTargets = IosImporter.targets(for: fileReference, using: targets)
+        let fileTargets = Importer.targets(for: fileReference, using: targets)
         let targetsUuids = fileTargets.map { $0.uuid }
 
         let file = File(uuid: fileReference.uuid, type: fileType, language: fileLanguage, path: filePath, projectPath: projectPath)
@@ -159,12 +159,12 @@ class IosImporter {
         return file
     }
 
-    static func files(in group: PBXVariantGroup, relativeTo projectPath: Path, with targets: [PBXNativeTarget]) -> [File] {
+    public static func files(in group: PBXVariantGroup, relativeTo projectPath: Path, with targets: [PBXNativeTarget]) -> [File] {
         var files = [File]()
 
         for child in group.children {
             guard let fileReference = child as? PBXFileReference,
-                  let file = IosImporter.file(from: fileReference, relativeTo: projectPath, with: targets)
+                  let file = Importer.file(from: fileReference, relativeTo: projectPath, with: targets)
             else { continue }
 
             files.append(file)
@@ -173,7 +173,7 @@ class IosImporter {
         return files
     }
 
-    static func path(for file: PBXFileReference, in projectPath: Path) -> Path? {
+    public static func path(for file: PBXFileReference, in projectPath: Path) -> Path? {
         let trimPath = { (path: Path) -> Path in
             var components = path.components
             components.remove(at: components.count - 4)
@@ -190,7 +190,7 @@ class IosImporter {
         }
     }
 
-    static func type(for file: PBXFileReference) -> LocalizableType? {
+    public static func type(for file: PBXFileReference) -> LocalizableType? {
         switch file.fileType {
         case .strings: return .strings
         case .storyboard: return .storyboard
@@ -200,7 +200,7 @@ class IosImporter {
         }
     }
 
-    static func targets(for file: PBXFileReference, using targets: [PBXNativeTarget]) -> [PBXNativeTarget] {
+    public static func targets(for file: PBXFileReference, using targets: [PBXNativeTarget]) -> [PBXNativeTarget] {
         return targets.filter { target in
             guard let buildFiles = try? target.resourcesBuildPhase()?.files else { return false }
             return buildFiles.contains { buildFile in
@@ -217,39 +217,39 @@ class IosImporter {
         }
     }
 
-    static func language(for file: PBXFileReference, defaultLanguage: Language? = nil) -> Language? {
+    public static func language(for file: PBXFileReference, defaultLanguage: Language? = nil) -> Language? {
         guard let name = file.name else { return defaultLanguage }
         return Language(rawValue: name) ?? defaultLanguage
     }
 
-    static func values(in file: File, with options: ImporterOptions, and buildSettings: BuildSettings? = nil) -> [ValueHolder] {
+    public static func values(in file: File, with options: ImporterOptions, and buildSettings: BuildSettings? = nil) -> [ValueHolder] {
         switch file.type {
         case .storyboard,
              .xib:
-            return IosImporter.valuesInStoryboard(in: file.path, with: options)
+            return Importer.valuesInStoryboard(in: file.path, with: options)
         case .strings:
-            return IosImporter.valuesInStrings(in: file.path, with: options)
+            return Importer.valuesInStrings(in: file.path, with: options)
         case .config:
-            return IosImporter.valuesInInfoPlist(in: file.path, with: options, and: buildSettings)
+            return Importer.valuesInInfoPlist(in: file.path, with: options, and: buildSettings)
         }
     }
 
     private static func valuesInStrings(in path: Path, with options: ImporterOptions) -> [ValueHolder] {
-        let content = IosImporter.readContent(path: path)
+        let content = Importer.readContent(path: path)
         var reVal = [ValueHolder]()
 
-        let resources = RegEx.matches(for: IosImporter.findStringWithCommentExpression, in: content)
+        let resources = RegEx.matches(for: Importer.findStringWithCommentExpression, in: content)
         for (index, var res) in resources.enumerated() {
             var comment = ""
-            let comments = RegEx.matches(for: IosImporter.findCommentExpression, in: res)
+            let comments = RegEx.matches(for: Importer.findCommentExpression, in: res)
             for cmnt in comments {
                 comment += cmnt
                 res = res.replacingOccurrences(of: cmnt, with: "")
             }
 
-            guard var string = RegEx.matches(for: IosImporter.findStringExpression, in: res).first else { continue }
+            guard var string = RegEx.matches(for: Importer.findStringExpression, in: res).first else { continue }
 
-            string = RegEx.replace(string, with: "\"=\"", using: IosImporter.cleanStringExpression)
+            string = RegEx.replace(string, with: "\"=\"", using: Importer.cleanStringExpression)
                 .trimmingCharacters(in: .whitespaces)
                 .trimmingCharacters(in: [";"])
 
@@ -268,9 +268,9 @@ class IosImporter {
             if options.ignoreOnlyWhitespaceValues, value.trimmingCharacters(in: .whitespaces).isEmpty { continue }
             if options.ignoredValues.contains(where: { $0.name.localizedCaseInsensitiveCompare(value) == .orderedSame }) { continue }
 
-            if options.ignoreCommentsInStoryboards, !RegEx.matches(for: IosImporter.storyboardCommentExpression, in: comment).isEmpty {
+            if options.ignoreCommentsInStoryboards, !RegEx.matches(for: Importer.storyboardCommentExpression, in: comment).isEmpty {
             } else {
-                comment = RegEx.replace(comment, with: "", using: IosImporter.cleanCommentExpression)
+                comment = RegEx.replace(comment, with: "", using: Importer.cleanCommentExpression)
                 comment = comment.trimmingCharacters(in: .newlines)
             }
 
@@ -287,7 +287,7 @@ class IosImporter {
 
         let tempPath = path.parent() + "temp.strings"
         Process.launchedProcess(launchPath: ibtool.string, arguments: [path.string, "--generate-strings-file", tempPath.string]).waitUntilExit()
-        let reVal = IosImporter.valuesInStrings(in: tempPath, with: options)
+        let reVal = Importer.valuesInStrings(in: tempPath, with: options)
 
         do {
             try tempPath.delete()
@@ -300,7 +300,7 @@ class IosImporter {
     private static func valuesInInfoPlist(in path: Path, with options: ImporterOptions, and buildSettings: BuildSettings? = nil) -> [ValueHolder] {
         var plist: [String: Any]
         do {
-            let data = try IosImporter.read(path: path)
+            let data = try Importer.read(path: path)
             plist = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! [String: Any]
         } catch {
             // TODO: Send error report to AppCenter
@@ -318,7 +318,7 @@ class IosImporter {
         var reVal: [ValueHolder] = []
         for (index, res) in resources.enumerated() {
             guard var value = res.value as? String else { continue }
-            let variableName = RegEx.matches(for: IosImporter.findVariableExpression, in: value).first
+            let variableName = RegEx.matches(for: Importer.findVariableExpression, in: value).first
             if let buildSettings = buildSettings, let variableName = variableName, let newValue = buildSettings[variableName] as? String {
                 value = newValue
             }
@@ -329,7 +329,7 @@ class IosImporter {
         return reVal
     }
 
-    static func addLanguage(_ language: Language, to name: String, with data: Data, in projectPath: Path) -> File? {
+    public static func addLanguage(_ language: Language, to name: String, with data: Data, in projectPath: Path) -> File? {
         guard let xcodeProject = try? XcodeProj(path: projectPath) else { return nil }
         guard let variantGroup = xcodeProject.pbxproj.variantGroups.first(where: { $0.name == name }) else { return nil }
         let fileName = name.replacingOccurrences(of: ".storyboard", with: ".strings").replacingOccurrences(of: ".xib", with: ".strings")
@@ -341,24 +341,24 @@ class IosImporter {
             let fileReference = try variantGroup.addFile(at: filePath, sourceRoot: projectPath.parent(), validatePresence: false)
             fileReference.name = language.rawValue
 
-            if let actualPath = IosImporter.path(for: fileReference, in: projectPath) {
+            if let actualPath = Importer.path(for: fileReference, in: projectPath) {
                 try actualPath.parent().mkpath()
                 try actualPath.write(data)
                 try xcodeProject.write(path: projectPath)
 
-                return IosImporter.file(from: fileReference, relativeTo: projectPath, with: xcodeProject.pbxproj.nativeTargets)
+                return Importer.file(from: fileReference, relativeTo: projectPath, with: xcodeProject.pbxproj.nativeTargets)
             }
         } catch {}
 
         return nil
     }
 
-    static func removeLanguage(file: File, in projectPath: Path) -> Data? {
+    public static func removeLanguage(file: File, in projectPath: Path) -> Data? {
         guard
             let xcodeProject = try? XcodeProj(path: projectPath),
             let variantGroup = xcodeProject.pbxproj.variantGroups.first(where: { $0.children.contains(where: { $0.uuid == file.uuid }) }),
             let fileReference = variantGroup.children.first(where: { $0.uuid == file.uuid }) as? PBXFileReference,
-            let actualPath = IosImporter.path(for: fileReference, in: projectPath)
+            let actualPath = Importer.path(for: fileReference, in: projectPath)
         else { return nil }
 
         do {
@@ -378,7 +378,7 @@ class IosImporter {
     private static func saveStoryboard(file: File, values: [ValueHolder], with options: ImporterOptions) {
         guard file.type == .storyboard || file.type == .xib else { return }
 
-        var content = IosImporter.readContent(path: file.path)
+        var content = Importer.readContent(path: file.path)
         let lines = content.split(separator: "\n")
 
         values.forEach { res in
@@ -389,7 +389,7 @@ class IosImporter {
             content = content.replacingOccurrences(of: line, with: newLine)
         }
 
-        IosImporter.write(content: content, to: file.path)
+        Importer.write(content: content, to: file.path)
     }
 
     private static func saveStrings(file: File, values: [ValueHolder], with options: ImporterOptions) {
@@ -399,9 +399,9 @@ class IosImporter {
         let newValues = values.sorted { lhs, rhs in
             switch options.exportOrder {
             case .sameAsOriginal:
-                return lhs.originalIndex ?? 999999 < rhs.originalIndex ?? 999999
+                return lhs.originalIndex ?? 999_999 < rhs.originalIndex ?? 999_999
             case .sameAsBase:
-                return lhs.baseIndex ?? 999999 < rhs.baseIndex ?? 999999
+                return lhs.baseIndex ?? 999_999 < rhs.baseIndex ?? 999_999
             case .alphabeticallyAscending:
                 return lhs.key < rhs.key
             case .alphabeticallyDescending:
@@ -433,26 +433,26 @@ class IosImporter {
         content = content.trimmingCharacters(in: .newlines)
         content += "\n"
 
-        IosImporter.write(content: content, to: file.path)
+        Importer.write(content: content, to: file.path)
     }
 
     private static func saveInfoPlist(file: File, values: [ValueHolder], with options: ImporterOptions) {
         var plist: [String: Any]
         do {
-            let data = try IosImporter.read(path: file.path)
+            let data = try Importer.read(path: file.path)
             plist = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! [String: Any]
         } catch {
             // TODO: Send error report to AppCenter
             return
         }
 
-        let originalValues = IosImporter.values(in: file, with: options)
+        let originalValues = Importer.values(in: file, with: options)
         let valuesToRemove = originalValues.filter { originalValue in !values.contains { value in value.key == originalValue.key } }
 
-        valuesToRemove.forEach { value in
+        for value in valuesToRemove {
             plist.removeValue(forKey: value.key)
         }
-        values.forEach { value in
+        for value in values {
             plist[value.key] = value.variableName == nil ? value.value : "$(\(value.variableName!))"
         }
 
@@ -463,7 +463,7 @@ class IosImporter {
         let nativeTargets = xcodeProject.pbxproj.nativeTargets.filter { file.targetsUuids.contains($0.uuid) && $0.buildConfigurationList != nil }
         let configurations = nativeTargets.flatMap { $0.buildConfigurationList!.buildConfigurations }
 
-        configurations.forEach { configuration in
+        for configuration in configurations {
             valuesToRemove.filter { $0.variableName != nil }.forEach { value in
                 configuration.buildSettings.removeValue(forKey: value.variableName!)
             }
@@ -475,19 +475,19 @@ class IosImporter {
         try? xcodeProject.write(path: file.projectPath)
     }
 
-    static func save(file: File, values: [ValueHolder], with options: ImporterOptions) {
+    public static func save(file: File, values: [ValueHolder], with options: ImporterOptions) {
         switch file.type {
         case .storyboard,
              .xib:
-            IosImporter.saveStoryboard(file: file, values: values, with: options)
+            Importer.saveStoryboard(file: file, values: values, with: options)
         case .config:
-            IosImporter.saveInfoPlist(file: file, values: values, with: options)
+            Importer.saveInfoPlist(file: file, values: values, with: options)
         case .strings:
-            IosImporter.saveStrings(file: file, values: values, with: options)
+            Importer.saveStrings(file: file, values: values, with: options)
         }
     }
 
-    static func localize(_ localizable: inout Localizable, in projectPath: Path) throws {
+    public static func localize(_ localizable: inout Localizable, in projectPath: Path) throws {
         guard let file = localizable.files.first else { throw StringzError.importerError("localize", message: "unable to localize this localizable because it doesn't have any files") }
 
         let xcodeProject = try XcodeProj(path: projectPath)
@@ -533,20 +533,20 @@ class IosImporter {
                 let buildPhase = try? target.resourcesBuildPhase()
             else { return }
 
-            let _ = try! buildPhase.add(file: variantGroup)
+            _ = try! buildPhase.add(file: variantGroup)
         }
 
         try xcodeProject.write(path: projectPath)
 
         // - Import localizations from file
-        let files = IosImporter.files(in: variantGroup, relativeTo: projectPath, with: nativeTargets)
+        let files = Importer.files(in: variantGroup, relativeTo: projectPath, with: nativeTargets)
 
         localizable.files.removeAll()
         localizable.files.append(contentsOf: files)
         localizable.status = .unloaded
     }
 
-    static func unlocalize(_ localizable: inout Localizable, in projectPath: Path) throws {
+    public static func unlocalize(_ localizable: inout Localizable, in projectPath: Path) throws {
         guard let file = localizable.file(for: .base) ?? localizable.file(for: .english) ?? localizable.files.first else { throw StringzError.importerError("unlocalize", message: "unable to find the original file") }
 
         let xcodeProject = try XcodeProj(path: projectPath)
@@ -595,12 +595,12 @@ class IosImporter {
                 let buildPhase = try? target.resourcesBuildPhase()
             else { return }
 
-            let _ = try! buildPhase.add(file: fileReference)
+            _ = try! buildPhase.add(file: fileReference)
         }
 
         try xcodeProject.write(path: projectPath)
 
-        guard let finalFile = IosImporter.file(from: fileReference, relativeTo: projectPath, with: nativeTargets, defaultLanguage: .base) else { throw StringzError.importerError("unlocalize", message: "unable to extract old file from file reference") }
+        guard let finalFile = Importer.file(from: fileReference, relativeTo: projectPath, with: nativeTargets, defaultLanguage: .base) else { throw StringzError.importerError("unlocalize", message: "unable to extract old file from file reference") }
 
         localizable.files.removeAll()
         localizable.files.append(finalFile)
@@ -609,7 +609,7 @@ class IosImporter {
     }
 }
 
-extension IosImporter {
+extension Importer {
     private static func readContent(path: Path) -> String {
         var realPath: Path
         do {
@@ -655,37 +655,63 @@ extension IosImporter {
     }
 }
 
-enum ExportOrder: Int {
+public enum ExportOrder: Int {
     case sameAsOriginal = 0
     case sameAsBase = 1
     case alphabeticallyAscending = 2
     case alphabeticallyDescending = 3
 }
 
-enum CommentStyle: Int {
+public enum CommentStyle: Int {
     case block = 0
     case line = 1
 }
 
-enum EmptyLines: Int {
+public enum EmptyLines: Int {
     case always = 0
     case never = 1
     case beforeComments = 2
 }
 
-struct ImporterOptions {
-    var importAllPlistKeys: Bool = false
-    var plistKeys: [PlistKey] = []
+public struct ImporterOptions {
+    public var importAllPlistKeys: Bool = false
+    public var plistKeys: [PlistKey] = []
 
-    var ignoreEmptyValues: Bool = true
-    var ignoreOnlyWhitespaceValues: Bool = false
-    var ignoreUnusedValuesInStoryboards: Bool = false
-    var ignoreCommentsInStoryboards: Bool = false
-    var ignoredValues: [IgnoredValue] = []
+    public var ignoreEmptyValues: Bool = true
+    public var ignoreOnlyWhitespaceValues: Bool = false
+    public var ignoreUnusedValuesInStoryboards: Bool = false
+    public var ignoreCommentsInStoryboards: Bool = false
+    public var ignoredValues: [IgnoredValue] = []
 
-    var exportOrder: ExportOrder = .sameAsOriginal
-    var commentStyle: CommentStyle = .line
-    var emptyLines: EmptyLines = .beforeComments
+    public var exportOrder: ExportOrder = .sameAsOriginal
+    public var commentStyle: CommentStyle = .line
+    public var emptyLines: EmptyLines = .beforeComments
 
-    var xcodePath: String?
+    public var xcodePath: String?
+    
+    public init(
+        importAllPlistKeys: Bool = false,
+        plistKeys: [PlistKey] = [],
+        ignoreEmptyValues: Bool = true,
+        ignoreOnlyWhitespaceValues: Bool = false,
+        ignoreUnusedValuesInStoryboards: Bool = false,
+        ignoreCommentsInStoryboards: Bool = false,
+        ignoredValues: [IgnoredValue] = [],
+        exportOrder: ExportOrder = .sameAsOriginal,
+        commentStyle: CommentStyle = .line,
+        emptyLines: EmptyLines = .beforeComments,
+        xcodePath: String? = nil
+    ) {
+        self.importAllPlistKeys = importAllPlistKeys
+        self.plistKeys = plistKeys
+        self.ignoreEmptyValues = ignoreEmptyValues
+        self.ignoreOnlyWhitespaceValues = ignoreOnlyWhitespaceValues
+        self.ignoreUnusedValuesInStoryboards = ignoreUnusedValuesInStoryboards
+        self.ignoreCommentsInStoryboards = ignoreCommentsInStoryboards
+        self.ignoredValues = ignoredValues
+        self.exportOrder = exportOrder
+        self.commentStyle = commentStyle
+        self.emptyLines = emptyLines
+        self.xcodePath = xcodePath
+    }
 }

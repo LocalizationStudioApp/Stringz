@@ -10,11 +10,11 @@ import Cocoa
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
-import PathKit
 import Sparkle
 import Preferences
 import Combine
 import ValueTransformerKit
+import StringzCore
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

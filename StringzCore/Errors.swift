@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum StringzError: Error {
+public enum StringzError: Error {
     case notFoundError
     case importerError(_ domain: String, message: String? = nil)
 }

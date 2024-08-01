@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import StringzCore
 
 class MyOutlineView: NSOutlineView {
     override func frameOfOutlineCell(atRow row: Int) -> NSRect {

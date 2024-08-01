@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import StringzCore
 
 class LocalizableCellView: NSTableCellView {
     @IBOutlet var iconImage: NSImageView!
