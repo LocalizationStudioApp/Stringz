@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -58,7 +58,7 @@
                     </columns>
                     <gridCells>
                         <gridCell row="079-Lv-AC1" column="GMD-jt-JVo" id="f8j-yh-6Vm">
-                            <textField key="contentView" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YPQ-Bm-4VW">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YPQ-Bm-4VW">
                                 <rect key="frame" x="74" y="609" width="67" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Importing:" id="OY6-JU-q53">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -104,7 +104,7 @@
                         </gridCell>
                         <gridCell row="LBh-2H-Z3q" column="GMD-jt-JVo" id="pL8-dZ-aRu"/>
                         <gridCell row="LBh-2H-Z3q" column="GRB-EN-USw" id="1YD-lw-dS6">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FA9-sf-VGf">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FA9-sf-VGf">
                                 <rect key="frame" x="147" y="549" width="405" height="28"/>
                                 <textFieldCell key="cell" title="If you check this option, only values that consist of whitespace characters will be ignored, new line characters won't." id="6IF-iE-Sbw">
                                     <font key="font" metaFont="message" size="11"/>
@@ -114,7 +114,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="y3j-Ks-N0A" column="GMD-jt-JVo" id="ORB-CN-OjN">
-                            <textField key="contentView" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZJG-Fb-SE8">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZJG-Fb-SE8">
                                 <rect key="frame" x="2" y="515" width="139" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Storyboard / XIB Files:" id="NeK-T4-OJO">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -142,7 +142,7 @@
                         </gridCell>
                         <gridCell row="yKu-uc-SBG" column="GMD-jt-JVo" id="dYZ-Pc-PMQ"/>
                         <gridCell row="yKu-uc-SBG" column="GRB-EN-USw" id="MqP-u7-MYk">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9vZ-Bb-deq">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9vZ-Bb-deq">
                                 <rect key="frame" x="147" y="465" width="405" height="42"/>
                                 <textFieldCell key="cell" id="fHy-8H-21I">
                                     <font key="font" metaFont="message" size="11"/>
@@ -172,7 +172,7 @@
                         </gridCell>
                         <gridCell row="ROq-yJ-TMQ" column="GMD-jt-JVo" id="uht-E1-zBC"/>
                         <gridCell row="ROq-yJ-TMQ" column="GRB-EN-USw" id="zWz-xO-JXg">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pRV-aA-bNw">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pRV-aA-bNw">
                                 <rect key="frame" x="147" y="395" width="405" height="28"/>
                                 <textFieldCell key="cell" title="This option only applies to the automatically generated comments by Xcode, Any comments you write will always be imported." id="scR-39-FmG">
                                     <font key="font" metaFont="message" size="11"/>
@@ -188,7 +188,7 @@
                         </gridCell>
                         <gridCell row="6N6-qx-3dF" column="GRB-EN-USw" headOfMergedCell="QQK-YY-Nqg" id="43e-6Q-b3D"/>
                         <gridCell row="0hH-9w-FhV" column="GMD-jt-JVo" headOfMergedCell="14w-G4-pXW" xPlacement="leading" id="14w-G4-pXW">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-R4-MfD">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-R4-MfD">
                                 <rect key="frame" x="-2" y="343" width="211" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Don't import these keys or values:" id="LdV-Bg-iHb">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -232,7 +232,7 @@
                                                                     <rect key="frame" x="18" y="0.0" width="511" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField identifier="name" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bw0-PJ-r0s">
+                                                                        <textField identifier="name" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bw0-PJ-r0s">
                                                                             <rect key="frame" x="0.0" y="4" width="511" height="16"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="neY-9P-GwO">
                                                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -244,7 +244,7 @@
                                                                                 <binding destination="fdF-m6-waW" name="toolTip" keyPath="objectValue.name" id="um2-Bg-N2Q"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UeJ-n7-ASw">
+                                                                        <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UeJ-n7-ASw">
                                                                             <rect key="frame" x="507" y="4" width="4" height="16"/>
                                                                             <textFieldCell key="cell" lineBreakMode="clipping" id="4c5-4e-qNW">
                                                                                 <font key="font" metaFont="system"/>
@@ -356,7 +356,7 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="lock" id="Ipq-b7-dbO"/>
                                     </imageView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mlw-D6-Y6R">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mlw-D6-Y6R">
                                         <rect key="frame" x="34" y="6" width="378" height="15"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="These options cannot be changed while you have an open project." id="PVb-fo-0pf">
                                             <font key="font" metaFont="cellTitle"/>

@@ -18,7 +18,7 @@ class EditorViewController: NSViewController {
     @IBOutlet var buttonEmpty: NSButton!
 
     private var windowController: MainWindowController!
-    
+
     private var localizables: [Localizable] {
         windowController?.localizables ?? []
     }
@@ -129,18 +129,21 @@ class EditorViewController: NSViewController {
         let keyColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "key"))
         keyColumn.width = colWidth
         keyColumn.sortDescriptorPrototype = sortDescriptor(for: "key")
+        keyColumn.dataCell = EditorTableViewCell(textCell: "")
         tableView.addTableColumn(keyColumn)
 
         let commentColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "comment"))
         commentColumn.width = colWidth
         commentColumn.sortDescriptorPrototype = sortDescriptor(for: "comment")
+        commentColumn.dataCell = EditorTableViewCell(textCell: "")
         tableView.addTableColumn(commentColumn)
-
-        languages.forEach { lang in
+        NSProgressIndicator.self
+        for lang in languages {
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: lang.rawValue))
             column.width = colWidth
-            column.sortDescriptorPrototype = self.sortDescriptor(for: lang.rawValue)
-
+            column.sortDescriptorPrototype = sortDescriptor(for: lang.rawValue)
+            column.dataCell = EditorTableViewCell(textCell: "")
+//            print(column.dataCell)
             tableView.addTableColumn(column)
         }
 
@@ -235,16 +238,16 @@ extension EditorViewController {
     }
 
     func updateColumnTitles() {
-        tableView.tableColumns.forEach { column in
+        for column in tableView.tableColumns {
             let columnIdentifier = column.identifier.rawValue
             if columnIdentifier == "key" {
-                column.title = (self.showFlags ? "🔑  " : "") + "Key"
-                column.isHidden = !self.showKeyColumn
+                column.title = (showFlags ? "🔑  " : "") + "Key"
+                column.isHidden = !showKeyColumn
             } else if columnIdentifier == "comment" {
-                column.title = "  " + (self.showFlags ? "✏️  " : "") + "Comment"
-                column.isHidden = !self.showCommentColumn
+                column.title = "  " + (showFlags ? "✏️  " : "") + "Comment"
+                column.isHidden = !showCommentColumn
             } else if let lang = Language(rawValue: columnIdentifier) {
-                column.title = "  " + (self.showFlags ? lang.flag + "  " : "") + lang.fiendlyName
+                column.title = "  " + (showFlags ? lang.flag + "  " : "") + lang.fiendlyName
             }
         }
     }
@@ -271,4 +274,80 @@ extension EditorViewController {
             }
         }
     }
+}
+
+open class EditorTableViewCell: NSTextFieldCell {
+    var isEditingOrSelecting: Bool = false
+
+    public override init(textCell string: String) {
+        super.init(textCell: string)
+
+        isEditable = true
+        isEnabled = true
+        wraps = false
+        isScrollable = true
+    }
+
+    @available(*, unavailable)
+    public required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    open override func drawingRect(forBounds theRect: NSRect) -> NSRect {
+        // Get the parent's idea of where we should draw
+        var newRect: NSRect = super.drawingRect(forBounds: theRect)
+
+        // When the text field is being edited or selected, we have to turn off the magic because it screws up
+        // the configuration of the field editor.  We sneak around this by intercepting selectWithFrame and editWithFrame and sneaking a
+        // reduced, centered rect in at the last minute.
+
+        if !isEditingOrSelecting {
+            // Get our ideal size for current text
+            let textSize: NSSize = cellSize(forBounds: theRect)
+
+            // Center in the proposed rect
+            let heightDelta: CGFloat = newRect.size.height - textSize.height
+            if heightDelta > 0 {
+                newRect.size.height -= heightDelta
+                newRect.origin.y += heightDelta / 2
+            }
+            newRect = newRect.insetBy(dx: 2, dy: 0)
+        }
+
+        return newRect
+    }
+
+    open override func select(
+        withFrame rect: NSRect,
+        in controlView: NSView,
+        editor textObj: NSText,
+        delegate: Any?,
+        start selStart: Int,
+        length selLength: Int
+    ) // (var aRect: NSRect, inView controlView: NSView, editor textObj: NSText, delegate anObject: AnyObject?, start selStart: Int, length selLength: Int)
+    {
+        let arect = drawingRect(forBounds: rect)
+        isEditingOrSelecting = true
+        super.select(withFrame: arect, in: controlView, editor: textObj, delegate: delegate, start: selStart, length: selLength)
+        isEditingOrSelecting = false
+    }
+
+    open override func edit(
+        withFrame rect: NSRect,
+        in controlView: NSView,
+        editor textObj: NSText,
+        delegate: Any?,
+        event: NSEvent?
+    ) {
+        let aRect = drawingRect(forBounds: rect)
+        isEditingOrSelecting = true
+        super.edit(withFrame: aRect, in: controlView, editor: textObj, delegate: delegate, event: event)
+        isEditingOrSelecting = false
+    }
+
+//    open override func setUpFieldEditorAttributes(_ textObj: NSText) -> NSText {
+//        textObj.then {
+//            $0.frame = $0.frame.insetBy(dx: 5, dy: 5)
+//        }
+//    }
 }

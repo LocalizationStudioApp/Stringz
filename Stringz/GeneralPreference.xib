@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -69,7 +69,7 @@
                     </columns>
                     <gridCells>
                         <gridCell row="0rt-YK-fIa" column="EJb-zY-cux" id="IxU-mv-oHV">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="9p0-I0-UsD">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="9p0-I0-UsD">
                                 <rect key="frame" x="2" y="734" width="64" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Autosave:" id="UKv-4P-VCC">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -92,7 +92,7 @@
                         </gridCell>
                         <gridCell row="tDF-uH-PIn" column="EJb-zY-cux" id="wZD-Rp-lCs"/>
                         <gridCell row="tDF-uH-PIn" column="zoe-rf-O2S" id="GY2-M6-Hw8">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TB9-id-9rq">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TB9-id-9rq">
                                 <rect key="frame" x="72" y="698" width="430" height="28"/>
                                 <textFieldCell key="cell" id="zto-Pu-cUZ">
                                     <font key="font" metaFont="message" size="11"/>
@@ -103,7 +103,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="p34-s5-aBV" column="EJb-zY-cux" id="Vvr-JC-Zbl">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zae-dx-GKZ">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zae-dx-GKZ">
                                 <rect key="frame" x="4" y="664" width="62" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Autoload:" id="nyR-Fc-tnN">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -126,7 +126,7 @@
                         </gridCell>
                         <gridCell row="glN-KV-qpr" column="EJb-zY-cux" id="bMb-wm-QAm"/>
                         <gridCell row="glN-KV-qpr" column="zoe-rf-O2S" id="i5t-zC-Dcy">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sEc-Ui-I2j">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sEc-Ui-I2j">
                                 <rect key="frame" x="72" y="614" width="430" height="42"/>
                                 <textFieldCell key="cell" id="25O-QX-WCX">
                                     <font key="font" metaFont="message" size="11"/>
@@ -143,7 +143,7 @@
                         </gridCell>
                         <gridCell row="jgl-fw-Tgk" column="zoe-rf-O2S" headOfMergedCell="PgQ-B1-bTD" id="Uam-md-Ise"/>
                         <gridCell row="TPz-H8-sH5" column="EJb-zY-cux" id="mGL-OK-yzf">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8lz-ej-Yzj">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8lz-ej-Yzj">
                                 <rect key="frame" x="16" y="562" width="50" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Search:" id="DEs-gn-Zyj">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -179,7 +179,7 @@
                         </gridCell>
                         <gridCell row="D8G-Wd-dNR" column="EJb-zY-cux" id="Whz-bE-lwo"/>
                         <gridCell row="D8G-Wd-dNR" column="zoe-rf-O2S" id="Xa2-yC-Gc3">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4VC-CK-EZy">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4VC-CK-EZy">
                                 <rect key="frame" x="72" y="474" width="430" height="56"/>
                                 <textFieldCell key="cell" id="NbG-da-LVk">
                                     <font key="font" metaFont="message" size="11"/>
@@ -206,7 +206,7 @@
                         </gridCell>
                         <gridCell row="6JF-U6-IPh" column="zoe-rf-O2S" headOfMergedCell="ZoY-5R-eJ8" id="37L-h5-8ne"/>
                         <gridCell row="D3r-He-Exo" column="EJb-zY-cux" id="Dtt-mU-HnX">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6cF-4E-udm">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6cF-4E-udm">
                                 <rect key="frame" x="23" y="388" width="43" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Other:" id="k7d-Ly-4Tq">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -229,7 +229,7 @@
                         </gridCell>
                         <gridCell row="zx3-Na-5gV" column="EJb-zY-cux" id="Irh-DC-vT7"/>
                         <gridCell row="zx3-Na-5gV" column="zoe-rf-O2S" id="VBE-qV-ysG">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kAA-OB-T8m">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kAA-OB-T8m">
                                 <rect key="frame" x="72" y="366" width="198" height="14"/>
                                 <textFieldCell key="cell" title="Show unlocalized files in the sidebar." id="JKu-0g-3TH">
                                     <font key="font" metaFont="message" size="11"/>
@@ -253,7 +253,7 @@
                         </gridCell>
                         <gridCell row="bhN-9g-O9h" column="EJb-zY-cux" id="xd5-bx-dzB"/>
                         <gridCell row="bhN-9g-O9h" column="zoe-rf-O2S" id="aWZ-YF-tKX">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lsO-WU-noE">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lsO-WU-noE">
                                 <rect key="frame" x="72" y="310" width="341" height="14"/>
                                 <textFieldCell key="cell" title="Show the flag of the country where the language is mostly used." id="DIM-7l-FhB">
                                     <font key="font" metaFont="message" size="11"/>
@@ -269,7 +269,7 @@
                         </gridCell>
                         <gridCell row="vuk-JN-GaH" column="zoe-rf-O2S" headOfMergedCell="qTo-84-fn8" id="Yvd-aw-3fr"/>
                         <gridCell row="Ong-4Q-ovC" column="EJb-zY-cux" id="fXl-Oh-x8V">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="YXj-4f-3tH">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="YXj-4f-3tH">
                                 <rect key="frame" x="7" y="258" width="59" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Updates:" id="9LD-eA-gBD">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -315,7 +315,7 @@
                         </gridCell>
                         <gridCell row="9BF-sj-VDX" column="EJb-zY-cux" id="ZtE-6U-Xes"/>
                         <gridCell row="9BF-sj-VDX" column="zoe-rf-O2S" id="1tQ-Pc-skL">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y7Y-N4-e24">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y7Y-N4-e24">
                                 <rect key="frame" x="72" y="188" width="401" height="14"/>
                                 <textFieldCell key="cell" title="There is no stable version of the application yet, So this option is always on." id="TJ7-BP-dVn">
                                     <font key="font" metaFont="message" size="11"/>
@@ -336,7 +336,7 @@
                         </gridCell>
                         <gridCell row="LcT-hC-w6f" column="EJb-zY-cux" id="nK9-gB-UjS"/>
                         <gridCell row="LcT-hC-w6f" column="zoe-rf-O2S" id="Bpd-5L-k7N">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ajB-vY-kO8">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ajB-vY-kO8">
                                 <rect key="frame" x="72" y="62" width="430" height="84"/>
                                 <textFieldCell key="cell" id="5nh-Ul-eUZ">
                                     <font key="font" metaFont="message" size="11"/>
@@ -366,7 +366,7 @@ Don't worry, I care about privacy as much as you do. None of the data collected 
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="lock" id="gVY-ft-kPa"/>
                                     </imageView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mea-Eo-Qtx">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mea-Eo-Qtx">
                                         <rect key="frame" x="34" y="6" width="425" height="15"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Some of these options cannot be changed while you have an open project." id="2fb-Kd-a2h">
                                             <font key="font" metaFont="cellTitle"/>
